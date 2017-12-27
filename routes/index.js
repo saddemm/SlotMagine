@@ -8,5 +8,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' , rand : rand = Math.random().toString(10).substring(7)});
 });
 
+router.get('/win', function(req, res, next) {
+  res.render('win');
+});
+
+router.get('/loose', function(req, res, next) {
+  res.render('loose');
+});
+
+router.get('/404', function(req, res, next) {
+  res.render('404');
+});
 
 module.exports = router;

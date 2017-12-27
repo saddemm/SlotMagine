@@ -154,7 +154,7 @@
           countProgress.value=60-seconds;
 
         }else{
-          alert('c fini');
+          window.location.reload();
         }
       }
       tick();
@@ -225,6 +225,14 @@
           case 'machine3':
             $("#machine3Result").text("Index: "+this.active);
             break;
+        }
+
+        if (essai<0){
+          setTimeout(function(){
+
+            window.location.reload();
+
+          },2000);
         }
       }
 
