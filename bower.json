@@ -1,0 +1,20 @@
+{
+  "name": "acrelec",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Saddem Anane <saddem.anene@esprit.tn>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jQuery-SlotMachine": "jquery-slotmachine#^3.0.1"
+  }
+}

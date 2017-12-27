@@ -1,0 +1,274 @@
+{% extends 'layout.twig' %}
+{% block styles %}
+
+
+{% endblock %}
+{% block body %}
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="#page-top">
+        <img src="images/logo-h.png" class="img-logo" alt="">
+      </a>
+    </div>
+  </nav>
+
+  <header class="masthead">
+    <div class="container h-100">
+      <div class="row h-100">
+
+
+
+
+
+
+        <div id="fullslotmachine" class="col-lg-12 my-auto" style="display: none">
+          <div id="randomize">
+
+
+
+            <div class="content container" style="text-align: center;max-width: 900px;">
+              <h1 id="essays"><i id="essais">3</i> essais restants</h1>
+
+              <progress value="0" max="60" id="countProgress"></progress>
+              <h5 id="timer"></h5>
+
+
+              <div class="row">
+                <div class="col-xs-4">
+                  <div>
+                    <div id="machine1" class="randomizeMachine">
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-4">
+                  <div>
+                    <div id="machine2" class="randomizeMachine">
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-xs-4">
+                  <div>
+                    <div id="machine3" class="randomizeMachine">
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/quick.png" /></div>
+                      <div><img src="images/carrefour.png" /></div>
+                      <div><img src="images/fazer.png"/></div>
+
+                    </div>
+                  </div>
+                  <!--<div id="machine1Result" class="col-xs-4 machineResult">Index: 0</div>
+                  <div id="machine2Result" class="col-xs-4 machineResult">Index: 1</div>
+                  <div id="machine3Result" class="col-xs-4 machineResult">Index: 2</div>-->
+                </div>
+              </div>
+
+              {#<div>
+                  <div class="btn-group btn-group-justified btn-group-randomize" role="group">
+                      <div id="ranomizeButton" type="button" class="btn btn-danger btn-lg">Shuffle</div>
+                  </div>
+                  <br>
+                  <div class="btn-group btn-group-justified btn-group-randomize" role="group">
+                      <div id="custonTest" type="button" class="btn btn-danger btn-lg">Bargeoui</div>
+                  </div>
+              </div>#}
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="col-lg-7 my-auto">
+          <div class="header-content mx-auto">
+            <h1 class="mb-5">Pour commencer, flashez le code ci-contre ou rendez-vous sur <span id="qr-link-2"></span> </h1>
+            <a href="" class="btn btn-outline btn-xl js-scroll-trigger">Essayer un autre code!</a>
+          </div>
+        </div>
+        <div class="col-lg-5 my-auto">
+          <div class="device-container">
+            <div class="device-mockup iphone6_plus portrait white">
+              <div class="device">
+                <div class="screen">
+                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
+                  <!--<img src="build/img/demo-screen-1.jpg" class="img-fluid" alt="">-->
+                  <div id="qr-code" class="qr-block"></div>
+                  <div id="qr-link" class="qr-link"></div>
+                </div>
+                <div class="button">
+                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </header>
+
+
+
+
+
+  <p><a href="play/{{ rand }}"><button class="btn-lg">Go to play</button></a></p>
+
+  {#<button id="ranomizeButton" class="btn-lg">Start shuffle</button>#}
+
+
+  <script>
+
+    var timeoutHandle;
+    function countdown() {
+      var seconds = 60;
+      function tick() {
+        var counter = document.getElementById("timer");
+        var countProgress = document.getElementById("countProgress");
+        seconds--;
+        counter.innerHTML =
+                (seconds < 10 ? "0" : "") + String(seconds);
+
+
+        if( seconds > 0 ) {
+          timeoutHandle=setTimeout(tick, 1000);
+          countProgress.value=60-seconds;
+
+        }else{
+          alert('c fini');
+        }
+      }
+      tick();
+    }
+
+
+
+
+    $(document).ready(function(){
+
+      var socket = io();
+
+      essai = 3;
+      $("#essais").text(essai);
+      essai--;
+
+
+      socket.on('playPressed', function(){
+
+        $("#essais").text(essai--);
+
+        startSchufle();
+      });
+
+
+      socket.emit('createRoom','{{ rand }}');
+
+
+
+
+      socket.on('joinRoom', function(){
+
+        $('.my-auto').hide();
+        $('#fullslotmachine').show();
+
+        countdown();
+
+
+        machine1 = $("#machine1").slotMachine({
+          active	: 0,
+          delay	: 800
+        });
+
+        machine2 = $("#machine2").slotMachine({
+          active	: 1,
+          delay	: 700,
+          direction: 'down'
+        });
+
+        machine3 = $("#machine3").slotMachine({
+          active	: 2,
+          delay	: 600
+        });
+
+
+      });
+
+
+
+      function onComplete(active){
+        switch(this.element[0].id){
+          case 'machine1':
+            $("#machine1Result").text("Index: "+this.active);
+            break;
+          case 'machine2':
+            $("#machine2Result").text("Index: "+this.active);
+            break;
+          case 'machine3':
+            $("#machine3Result").text("Index: "+this.active);
+            break;
+        }
+      }
+
+
+      $("#ranomizeButton").click(function(){
+
+
+
+        startSchufle();
+
+      });
+
+
+
+      function startSchufle(){
+
+
+        machine1.shuffle(5, onComplete);
+
+
+          machine2.shuffle(5, onComplete);
+
+          machine3.shuffle(5, onComplete);
+      }
+
+
+
+    });
+
+  </script>
+
+
+  <script type="text/javascript" src="/node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+  <script>
+    var rootUrl = window.location.href+"play/";
+    $(document).ready(function() {
+      link2 = rootUrl+"{{ rand }}";
+      $('#qr-code').qrcode(link2);
+
+
+      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+
+    });
+  </script>
+
+
+{% endblock %}

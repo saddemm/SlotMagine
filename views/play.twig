@@ -1,0 +1,87 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+  <body id="page-mobile" class="page-mobile">
+
+
+
+  <header class="masthead">
+    <div class="button-play">
+      <button id="btn-play" class="btn btn-default btn-xl js-scroll-trigger">Jouer</button>
+    </div>
+
+    <div class="text text-title">
+      <span><i id="essais">3</i> essais restants</span>
+    </div>
+    <div class="image-rotate">
+      <img src="/images/portrait-rotate.png" alt="">
+    </div>
+    <div class="text text-middle">
+      <span>prêt à jouer  </span>
+    </div>
+    <div class="text text-button">
+      <span>Basculer votre téléphone afin d'effectuer un mouvement de levier </span>
+    </div>
+
+  </header>
+
+
+
+  </body>
+
+
+  <script>
+    $(function () {
+      essai = 3;
+      $("#essais").text(essai);
+      essai--;
+
+      var socket = io();
+
+      socket.on("error",function(err){
+        console.log('there is an error');
+        if(err==1){
+          $('body').text('Cette partie n"existe pas')
+        }else if(err==2){
+          $('body').text('Partie déjà en cours')
+        }
+
+
+      });
+
+
+      socket.emit("joinRoom","{{ code }}");
+      $('#btn-play').click(function(){
+
+       document.getElementById('essais').innerHTML=essai--;
+
+
+        socket.emit('playPressed',"{{ code }}");
+
+
+        var oldValue = $(this).text();
+        $(this).attr("disabled", "disabled");
+        $(this).text("Patientez...");
+
+
+
+        setTimeout(function(){
+
+          document.getElementById('btn-play').innerHTML = oldValue;
+          if (essai>=0) {
+            document.getElementById('btn-play').removeAttribute('disabled');
+          }
+
+        }, 1000)
+
+      });
+
+
+
+
+
+
+    });
+  </script>
+{% endblock %}
