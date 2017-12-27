@@ -32,6 +32,12 @@
 
 
   <script>
+
+
+
+
+
+
     $(function () {
       essai = 3;
       $("#essais").text(essai);
@@ -52,6 +58,17 @@
 
 
       socket.emit("joinRoom","{{ code }}");
+
+
+      window.addEventListener("deviceorientation", function(event) {
+        if (Math.round(event.beta)<0){
+          $('#btn-play').click();
+
+        }
+
+      }, true);
+
+
       $('#btn-play').click(function(){
 
          navigator.vibrate(5000);
