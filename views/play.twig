@@ -61,7 +61,7 @@
 
 
       window.addEventListener("deviceorientation", function(event) {
-        if (Math.round(event.beta)<0){
+        if (Math.round(event.beta)<0 && !$('#btn-play').is(":disabled")){
           $('#btn-play').click();
 
         }
