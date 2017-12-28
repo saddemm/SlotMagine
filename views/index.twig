@@ -42,9 +42,7 @@
                       <div><img src="images/quick.png" /></div>
                       <div><img src="images/carrefour.png" /></div>
                       <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/kfc.png" /></div>
                     </div>
                   </div>
                 </div>
@@ -55,9 +53,7 @@
                       <div><img src="images/quick.png" /></div>
                       <div><img src="images/carrefour.png" /></div>
                       <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/kfc.png" /></div>
                     </div>
                   </div>
                 </div>
@@ -68,9 +64,7 @@
                       <div><img src="images/quick.png" /></div>
                       <div><img src="images/carrefour.png" /></div>
                       <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
+                      <div><img src="images/kfc.png" /></div>
 
                     </div>
                   </div>
@@ -128,55 +122,76 @@
   </header>
 
 
-
-
-
-  <p><a href="play/{{ rand }}"><button class="btn-lg">Go to play</button></a></p>
-
   {#<button id="ranomizeButton" class="btn-lg">Start shuffle</button>#}
 
 
   <script>
-
-    var timeoutHandle;
-    function countdown() {
-      var seconds = 60;
-      function tick() {
-        var counter = document.getElementById("timer");
-        var countProgress = document.getElementById("countProgress");
-        seconds--;
-        counter.innerHTML =
-                (seconds < 10 ? "0" : "") + String(seconds);
-
-
-        if( seconds > 0 ) {
-          timeoutHandle=setTimeout(tick, 1000);
-          countProgress.value=60-seconds;
-
-        }else{
-          window.location.reload();
-        }
-      }
-      tick();
-    }
 
 
 
 
     $(document).ready(function(){
 
+
+
+      // TIMER ----------------
+
+
+
+
+      var timeoutHandle;
+      function countdown() {
+        var seconds = 60;
+        function tick() {
+          var counter = document.getElementById("timer");
+          var countProgress = document.getElementById("countProgress");
+          seconds--;
+          counter.innerHTML =
+                  (seconds < 10 ? "0" : "") + String(seconds);
+
+
+          if( seconds > 0 ) {
+            timeoutHandle=setTimeout(tick, 1000);
+            countProgress.value=60-seconds;
+
+          }else{
+            reloader();
+          }
+        }
+        tick();
+      }
+
+      //----------------
+
+
+
+
       var socket = io();
 
-      essai = 3;
-      $("#essais").text(essai);
-      essai--;
+      var reloader = function reloader(){
+        socket.emit('loose', '{{ rand }}');
+        window.location.reload();
+      }
 
 
-      socket.on('playPressed', function(){
 
-        $("#essais").text(essai--);
+      socket.on('Result', function(what){
+
+        what ? window.location.reload():null;
+
+      });
+
+
+
+      socket.on('playPressed', function(essais){
+
+        gessais = essais;
+
+        $("#essais").text(gessais);
 
         startSchufle();
+
+
       });
 
 
@@ -195,56 +210,56 @@
 
         machine1 = $("#machine1").slotMachine({
           active	: 0,
-          delay	: 800
+          delay	: 600
         });
 
         machine2 = $("#machine2").slotMachine({
           active	: 1,
-          delay	: 700,
+          delay	: 800,
           direction: 'down'
         });
 
         machine3 = $("#machine3").slotMachine({
           active	: 2,
-          delay	: 600
+          delay	: 700
         });
 
 
       });
 
-
-
-      function onComplete(active){
+      function onComplete(){
         switch(this.element[0].id){
           case 'machine1':
-            $("#machine1Result").text("Index: "+this.active);
+            active1 = this.active;
             break;
           case 'machine2':
-            $("#machine2Result").text("Index: "+this.active);
+            active2 = this.active;
             break;
           case 'machine3':
-            $("#machine3Result").text("Index: "+this.active);
+            active3 = this.active;
+                  checks(active1,active2,active3);
             break;
         }
 
-        if (essai<0){
+
+
+        function checks(active1,active2,active3) {
+          console.log(active1+" "+active2+" "+active3);
+
+          packetChecker = { active1 : active1, active2 : active2, active3 : active3, room: '{{ rand}}' }
+
+          socket.emit('checks', packetChecker);
+
+
+        }
+        if (gessais<=0){
           setTimeout(function(){
 
-            window.location.reload();
+            reloader();
 
-          },2000);
+          },1000);
         }
       }
-
-
-      $("#ranomizeButton").click(function(){
-
-
-
-        startSchufle();
-
-      });
-
 
 
       function startSchufle(){

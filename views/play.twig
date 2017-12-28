@@ -36,11 +36,19 @@
 
 
     $(function () {
-      essai = 3;
-      $("#essais").text(essai);
-      essai--;
 
       var socket = io();
+
+      socket.on('playPressed', function(essais){
+        $("#essais").text(essais);
+
+      });
+
+      socket.on('Result', function(what){
+
+       what ? winner() : looser();
+
+      });
 
       socket.on("error",function(err){
         console.log('there is an error');
@@ -69,7 +77,6 @@
       $('#btn-play').click(function(){
 
          navigator.vibrate(5000);
-       document.getElementById('essais').innerHTML=essai--;
 
 
         socket.emit('playPressed',"{{ code }}");
@@ -80,20 +87,24 @@
         $(this).text("Patientez...");
 
 
-
         setTimeout(function(){
 
           document.getElementById('btn-play').innerHTML = oldValue;
-          if (essai>=0) {
             document.getElementById('btn-play').removeAttribute('disabled');
-          }
+
 
         }, 5000)
 
       });
 
 
+      function looser(){
+        window.location = "/loose";
+      }
 
+      function winner(){
+        window.location = "/win";
+      }
 
 
 

@@ -72,12 +72,30 @@ io.on('connection', function(socket){
     console.log(io.sockets.adapter.rooms[room]);
   });
 
+  socket.on('checks', function (packetChecker) {
+
+    if (packetChecker.active1 == packetChecker.active2 && packetChecker.active2 == packetChecker.active3 && packetChecker.active3 == packetChecker.active1){
+
+      console.log('WIIIIIIIIIIIIIIN');
+
+      io.to(packetChecker.room).emit('Result',true);
+    }
+  });
+
+  socket.on('loose', function (room) {
+
+      io.to(room).emit('Result',false);
+
+  });
+  
+  
   socket.on('joinRoom', function (room) {
 
     if (io.sockets.adapter.rooms[room]){
 
       if (io.sockets.adapter.rooms[room].length< 2 ) {
         console.log("Joined: " + room);
+        socket.essais = 3;
         socket.join(room);
         io.to(room).emit('joinRoom');
 
@@ -93,8 +111,16 @@ io.on('connection', function(socket){
   });
 
   socket.on('playPressed', function(room){
+
+    if (socket.essais>0){
+      
     console.log('playpressed Now !:');
-    io.to(room).emit('playPressed');
+    socket.essais--;
+    io.to(room).emit('playPressed',socket.essais);
+      
+    }
+
+
   });
 
 
