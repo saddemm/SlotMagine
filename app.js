@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/acrelec', { useMongoClient: true });
+mongoose.connect('mongodb://localhost/acrelec', { useMongoClient: true });
 
 
 var index = require('./routes/index');
