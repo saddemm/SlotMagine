@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acrelec - Administration</title>
+
+
+  <link href="favicon.ico" rel="shortcut icon">
+
+
+  <script src="/admin/jquery/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/admin/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/datatables/media/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/common/css/source/main.css">
+
+  <script src="/admin/datatables/media/js/jquery.dataTables.min.js"></script>
+  <script src="/admin/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+
+
+</head>
+<body class="theme-default">
+
+<nav class="top-menu">
+  <div class="menu-icon-container hidden-md-up">
+    <div class="animate-menu-button left-menu-toggle">
+      <div><!-- --></div>
+    </div>
+  </div>
+  <div class="menu">
+
+    <div class="menu-info-block">
+      <div class="left">
+
+        <div class="header-buttons">
+          <div class="logo-container">
+            <a href="index.html" class="logo">
+              <img width="142" height="37" src="/admin/common/img/logo.png" alt="Acrelec logo">
+            </a>
+          </div>
+
+
+
+
+        </div>
+
+      </div>
+      <div class="right"><h4>Bienvenu dans votre intérface admin</h4></div>
+
+    </div>
+  </div>
+</nav>
+
+<section class="page-content">
+  <div class="page-content-inner">
+
+    <!--  -->
+    <section class="panel">
+      <div class="panel-heading">
+        <h4>
+          Liste des participants
+
+        </h4>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <br />
+            <div class="margin-bottom-50">
+              <table class="table table-hover nowrap" id="participantsTable" width="100%">
+                <thead>
+                <tr>
+                  <th>Email</th>
+                  <th>Telephone</th>
+                  <th>Date</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                  <th>Email</th>
+                  <th>Telephone</th>
+                  <th>Date</th>
+                </tr>
+                </tfoot>
+                <tbody>
+
+                {% for customer in customers%}
+                  <tr>
+                    <td>{{ customer.email }}</td>
+                    <td>{{ customer.telephone }}</td>
+                    <td>{{ customer.date|date('d M Y H:i') }}</td>
+                  </tr>
+                {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </section>
+    <!-- End  -->
+
+  </div>
+
+  <!-- Page Scripts -->
+  <script>
+    $(function(){
+
+      $('#participantsTable').DataTable({
+        responsive: true,
+        "aaSorting": []
+      });
+
+    });
+  </script>
+  <!-- End Page Scripts -->
+</section>
+
+<div class="cwt__footer visible-footer">
+  <div class="cwt__footer__top">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="cwt__footer__title cwt__footer__title--light">
+          <center>WK Fims 2017 ©</center>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<div class="main-backdrop"><!-- --></div>
+
+</body>
+</html>

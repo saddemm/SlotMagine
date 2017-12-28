@@ -4,10 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose   = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1/acrelec', { useMongoClient: true });
 
 
 var index = require('./routes/index');
 var play = require('./routes/play');
+var api = require('./routes/api');
+var admin = require('./routes/admin');
 
 var app = express();
 
@@ -32,6 +36,8 @@ app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 
 app.use('/', index);
 app.use('/play', play);
+app.use('/api', api.router);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -89,15 +95,17 @@ io.on('connection', function(socket){
   });
   
   
-  socket.on('joinRoom', function (room) {
+  socket.on('joinRoom', function (roomObj) {
 
-    if (io.sockets.adapter.rooms[room]){
+    if (io.sockets.adapter.rooms[roomObj.room]){
 
-      if (io.sockets.adapter.rooms[room].length< 2 ) {
-        console.log("Joined: " + room);
+      if (io.sockets.adapter.rooms[roomObj.room].length< 2 ) {
+
+        api.addCustomer(roomObj.customer);
+        console.log("Joined: " + roomObj.room);
         socket.essais = 3;
-        socket.join(room);
-        io.to(room).emit('joinRoom');
+        socket.join(roomObj.room);
+        io.to(roomObj.room).emit('joinRoom');
 
       }else{
         io.to(socket.id).emit('error',2);
