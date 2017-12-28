@@ -228,6 +228,7 @@
       });
 
       function onComplete(){
+
         switch(this.element[0].id){
           case 'machine1':
             active1 = this.active;
@@ -237,9 +238,9 @@
             break;
           case 'machine3':
             active3 = this.active;
-                  checks(active1,active2,active3);
             break;
         }
+        checks(active1, active2, active3);
 
 
 
