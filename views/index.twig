@@ -215,19 +215,20 @@
 
         machine2 = $("#machine2").slotMachine({
           active	: 1,
-          delay	: 800,
+          delay	: 700,
           direction: 'down'
         });
 
         machine3 = $("#machine3").slotMachine({
           active	: 2,
-          delay	: 700
+          delay	: 800
         });
 
 
       });
 
       function onComplete(){
+
 
         switch(this.element[0].id){
           case 'machine1':
@@ -239,26 +240,23 @@
           case 'machine3':
             active3 = this.active;
             break;
-        }
-        checks(active1, active2, active3);
-
-
-
-        function checks(active1,active2,active3) {
-          console.log(active1+" "+active2+" "+active3);
-
-          packetChecker = { active1 : active1, active2 : active2, active3 : active3, room: '{{ rand}}' }
-
-          socket.emit('checks', packetChecker);
-
+          case true:
 
         }
+
+        if (this.element[0].id=='machine3'){
+          checks(active1, active2, active3);
+      }
+
+
+
+
         if (gessais<=0){
           setTimeout(function(){
 
             reloader();
 
-          },1000);
+          },1500);
         }
       }
 
@@ -272,8 +270,19 @@
           machine2.shuffle(5, onComplete);
 
           machine3.shuffle(5, onComplete);
+
+
+
       }
 
+      function checks(active1, active2, active3) {
+        console.log(active1 + " " + active2 + " " + active3);
+
+        packetChecker = {active1: active1, active2: active2, active3: active3, room: '{{ rand }}'}
+
+        socket.emit('checks', packetChecker);
+
+      }
 
 
     });
