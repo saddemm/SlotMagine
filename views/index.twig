@@ -130,10 +130,29 @@
     var rootUrl = window.location.href+"play/";
     $(document).ready(function() {
       link2 = rootUrl+"{{ rand }}";
-      $('#qr-code').qrcode(link2);
 
 
-      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+
+      // getting the shortener url from google
+      $.ajax({
+        url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDvoYPaikzYtNfJiyzaXM-W95xUS6kqrJM',
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        data: '{ longUrl: "' + link2 +'"}',
+        dataType: 'json',
+        success: function(response) {
+          shortenerUrl = response.id; // Evaluate the J-Son response object.
+
+          $('#qr-code').qrcode(shortenerUrl);
+
+
+          $('#qr-link-2').html("<a href="+shortenerUrl+">"+shortenerUrl+"</a>");
+
+        }
+      });
+
+
+
 
     });
   </script>
@@ -376,6 +395,11 @@
 
 
     });
+
+
+
+
+
   </script>
 
 
