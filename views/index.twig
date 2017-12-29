@@ -130,7 +130,7 @@
     var rootUrl = window.location.href+"play/";
     $(document).ready(function() {
       link2 = rootUrl+"{{ rand }}";
-      console.log(link2);
+      console.log(window.top.location.href);
 
       // getting the shortener url from google
       $.ajax({
