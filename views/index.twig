@@ -130,6 +130,11 @@
       console.log(rootUrl);
       link2 = rootUrl+"{{ rand }}";
 
+      $('#qr-code').qrcode(link2);
+
+
+      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+
       // getting the shortener url from google
       $.ajax({
         url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDAoD3F7pUxYDUr1d4_gIDEkoxdst8Qbps',
