@@ -31,7 +31,7 @@
         </div>
         <div class="col-md-5 b-right">
           <div class="b-mobile">
-            <img src="/images/iphone_6_port_black.png">
+            <img src="/images/simple-me.png">
             <div id="qr-code" class="block-qrcode">
             </div>
           </div>
@@ -131,8 +131,6 @@
     $(document).ready(function() {
       link2 = rootUrl+"{{ rand }}";
 
-
-
       // getting the shortener url from google
       $.ajax({
         url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDvoYPaikzYtNfJiyzaXM-W95xUS6kqrJM',
@@ -150,8 +148,6 @@
 
         }
       });
-
-
 
 
     });
