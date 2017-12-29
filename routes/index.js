@@ -20,4 +20,13 @@ router.get('/404', function(req, res, next) {
   res.render('404');
 });
 
+router.get('/notfound', function(req, res, next) {
+  res.render('notfound');
+});
+
+router.get('/already', function(req, res, next) {
+  res.render('already');
+});
+
+
 module.exports = router;
