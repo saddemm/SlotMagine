@@ -6,162 +6,243 @@
 {% block body %}
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <img src="images/logo-h.png" class="img-logo" alt="">
-      </a>
-    </div>
-  </nav>
 
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100">
+  <div class="site-wrapper">
 
+  <div class="site-wrapper-inner">
 
+    <section class="main-page">
 
+      <div class="masthead clearfix">
+        <div class="inner">
+          <img src="/images/logo-h.png" alt="">
+        </div>
+      </div>
 
+      <div class="container-fluid main-container">
+        <div class="col-md-7 b-left">
+          <h1 class="mb-5">
+            Pour commencer,<br> flashez le code ci-contre <br> ou rendez-vous sur
+                        <span id="qr-link-2">
 
-
-        <div id="fullslotmachine" class="col-lg-12 my-auto" style="display: none">
-          <div id="randomize">
-
-
-
-            <div class="content container" style="text-align: center;max-width: 900px;">
-              <h1 id="essays"><i id="essais">3</i> essais restants</h1>
-
-              <progress value="0" max="60" id="countProgress"></progress>
-              <h5 id="timer"></h5>
-
-
-              <div class="row">
-                <div class="col-xs-4">
-                  <div>
-                    <div id="machine1" class="randomizeMachine">
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/kfc.png" /></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-4">
-                  <div>
-                    <div id="machine2" class="randomizeMachine">
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/kfc.png" /></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-xs-4">
-                  <div>
-                    <div id="machine3" class="randomizeMachine">
-                      <div><img src="images/quick.png" /></div>
-                      <div><img src="images/carrefour.png" /></div>
-                      <div><img src="images/fazer.png"/></div>
-                      <div><img src="images/kfc.png" /></div>
-
-                    </div>
-                  </div>
-                  <!--<div id="machine1Result" class="col-xs-4 machineResult">Index: 0</div>
-                  <div id="machine2Result" class="col-xs-4 machineResult">Index: 1</div>
-                  <div id="machine3Result" class="col-xs-4 machineResult">Index: 2</div>-->
-                </div>
-              </div>
-
-              {#<div>
-                  <div class="btn-group btn-group-justified btn-group-randomize" role="group">
-                      <div id="ranomizeButton" type="button" class="btn btn-danger btn-lg">Shuffle</div>
-                  </div>
-                  <br>
-                  <div class="btn-group btn-group-justified btn-group-randomize" role="group">
-                      <div id="custonTest" type="button" class="btn btn-danger btn-lg">Bargeoui</div>
-                  </div>
-              </div>#}
+                    </span>
+          </h1>
+          <a href="" class="btn btn-outline btn-xl js-scroll-trigger">Essayer un autre code!</a>
+        </div>
+        <div class="col-md-5 b-right">
+          <div class="b-mobile">
+            <img src="/images/iphone_6_port_black.png">
+            <div id="qr-code" class="block-qrcode">
             </div>
           </div>
         </div>
+      </div>
 
+    </section>
 
+    <section class="game-page hide">
 
+      <div id="countdown" class="pietimer">
+        <div id="countdown-number" class="pietimer-number"></div>
+        <svg>
+          <circle r="18" cx="20" cy="20"></circle>
+        </svg>
+      </div>
 
-
-        <div class="col-lg-7 my-auto">
-          <div class="header-content mx-auto">
-            <h1 class="mb-5">Pour commencer, flashez le code ci-contre ou rendez-vous sur <span id="qr-link-2"></span> </h1>
-            <a href="" class="btn btn-outline btn-xl js-scroll-trigger">Essayer un autre code!</a>
-          </div>
+      <div class="masthead clearfix">
+        <div class="inner">
+          <img src="/images/logo-h.png" alt="">
         </div>
-        <div class="col-lg-5 my-auto">
-          <div class="device-container">
-            <div class="device-mockup iphone6_plus portrait white">
-              <div class="device">
-                <div class="screen">
-                  <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                  <!--<img src="build/img/demo-screen-1.jpg" class="img-fluid" alt="">-->
-                  <div id="qr-code" class="qr-block"></div>
-                  <div id="qr-link" class="qr-link"></div>
+      </div>
+
+      <div class="container-fluid main-container">
+        <div class="col-md-12">
+
+          <div class="header-text text">
+            <p>Plus que <span id="timer-count"></span> secondes pour tenter de combler votre petit creux</p>
+          </div>
+
+          <div id="slot-block" class="block-slot">
+            <div class="row">
+              <div class="col-xs-4">
+                <div>
+                  <div id="machine1" class="randomize-block">
+                    <div><img src="/images/slot/slot1.png" /></div>
+                    <div><img src="/images/slot/slot2.png" /></div>
+                    <div><img src="/images/slot/slot3.png" /></div>
+                    <div><img src="/images/slot/slot4.png" /></div>
+                    <div><img src="/images/slot/slot5.png" /></div>
+                  </div>
                 </div>
-                <div class="button">
-                  <!-- You can hook the "home button" to some JavaScript events or just remove it -->
+              </div>
+
+              <div class="col-xs-4">
+                <div>
+                  <div id="machine2" class="randomize-block">
+                    <div><img src="/images/slot/slot1.png" /></div>
+                    <div><img src="/images/slot/slot2.png" /></div>
+                    <div><img src="/images/slot/slot3.png" /></div>
+                    <div><img src="/images/slot/slot4.png" /></div>
+                    <div><img src="/images/slot/slot5.png" /></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-xs-4">
+                <div>
+                  <div id="machine3" class="randomize-block">
+                    <div><img src="/images/slot/slot1.png" /></div>
+                    <div><img src="/images/slot/slot2.png" /></div>
+                    <div><img src="/images/slot/slot3.png" /></div>
+                    <div><img src="/images/slot/slot4.png" /></div>
+                    <div><img src="/images/slot/slot5.png" /></div>
+                  </div>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
 
-
+        <div class="footer-text text">
+          <p> <span id="essais">3</span> essais restants</p>
+        </div>
 
       </div>
+
+    </section>
+
+    <div class="mastfoot">
+      <div class="inner">
+        <p>©2017 All rights reserved. Designed by <a href="http://www.acrelec.com">Acrelec</a>.</p>
+      </div>
     </div>
-  </header>
+
+  </div>
+
+  </div>
 
 
   {#<button id="ranomizeButton" class="btn-lg">Start shuffle</button>#}
 
+  <script type="text/javascript" src="/node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
+  <script>
+    var rootUrl = window.location.href+"play/";
+    $(document).ready(function() {
+      link2 = rootUrl+"{{ rand }}";
+      $('#qr-code').qrcode(link2);
+
+
+      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+
+    });
+  </script>
 
   <script>
-
-
-
-
     $(document).ready(function(){
 
+      let settings = {
+        countdown : 60, // seconds
+      };
+
+      let $text_countdown  = $("span#timer-count");
 
 
-      // TIMER ----------------
+      let timerCountDown = function () {
+        let countdownNumberEl = document.getElementById('countdown-number');
+        let countdown = settings.countdown;
 
+        countdownNumberEl.textContent = countdown;
 
+        let intId = setInterval(function() {
 
-
-      var timeoutHandle;
-      function countdown() {
-        var seconds = 60;
-        function tick() {
-          var counter = document.getElementById("timer");
-          var countProgress = document.getElementById("countProgress");
-          seconds--;
-          counter.innerHTML =
-                  (seconds < 10 ? "0" : "") + String(seconds);
-
-
-          if( seconds > 0 ) {
-            timeoutHandle=setTimeout(tick, 1000);
-            countProgress.value=60-seconds;
-
-          }else{
+          if (countdown < 2){
+            clearInterval(intId);
+            // call function to handle timeout :: loose
             reloader();
           }
-        }
-        tick();
-      }
 
-      //----------------
+          countdown = --countdown <= 0 ? settings.countdown : countdown;
+
+          let countdownT = countdown < 10 ? "0"+countdown : countdown;
+          countdownNumberEl.textContent = countdownT;
+          $text_countdown.text(countdownT);
+
+
+        }, 1000);
+      };
+
+
+
+
+      initBackgroundAnimation = function(){
+
+        let colors = [
+          [244, 107, 69],
+          [238, 168, 73],
+          [192, 36, 37],
+          [240, 203, 53],
+          [237, 143, 3],
+          [248, 181, 0]
+        ];
+
+        let step = 0;
+        //color table indices for:
+        // current color left
+        // next color left
+        // current color right
+        // next color right
+        let colorIndices = [0,1,2,3];
+
+        //transition speed
+        let gradientSpeed = 0.002;
+
+        function updateGradient()  {
+
+          if ( $===undefined ) return;
+
+          let c0_0 = colors[colorIndices[0]];
+          let c0_1 = colors[colorIndices[1]];
+          let c1_0 = colors[colorIndices[2]];
+          let c1_1 = colors[colorIndices[3]];
+
+          let istep = 1 - step;
+          let r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+          let g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+          let b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+          let color1 = "rgb("+r1+","+g1+","+b1+")";
+
+          let r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+          let g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+          let b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+          let color2 = "rgb("+r2+","+g2+","+b2+")";
+
+          $('body').css({
+            background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+            background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+
+          step += gradientSpeed;
+          if ( step >= 1 )  {
+            step %= 1;
+            colorIndices[0] = colorIndices[1];
+            colorIndices[2] = colorIndices[3];
+
+            //pick two new target color indices
+            //do not pick the same as the current one
+            colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+            colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+
+          }
+        }
+
+
+        setInterval(updateGradient,20);
+
+      };
+
+
+      initBackgroundAnimation();
+
 
 
 
@@ -202,12 +283,21 @@
 
       socket.on('joinRoom', function(){
 
-        $('.my-auto').hide();
-        $('#fullslotmachine').show();
+        $mainPage = $("section.main-page");
+        $gamePage = $("section.game-page");
 
-        countdown();
+        $mainPage.addClass("hide");
+        $gamePage.removeClass("hide");
+
+        timerCountDown();
 
 
+        initMachines();
+
+
+      });
+
+      function initMachines(){
         machine1 = $("#machine1").slotMachine({
           active	: 0,
           delay	: 600
@@ -223,9 +313,7 @@
           active	: 2,
           delay	: 800
         });
-
-
-      });
+      }
 
       function onComplete(){
 
@@ -246,7 +334,7 @@
 
         if (this.element[0].id=='machine3'){
           checks(active1, active2, active3);
-      }
+        }
 
 
 
@@ -267,9 +355,9 @@
         machine1.shuffle(5, onComplete);
 
 
-          machine2.shuffle(5, onComplete);
+        machine2.shuffle(5, onComplete);
 
-          machine3.shuffle(5, onComplete);
+        machine3.shuffle(5, onComplete);
 
 
 
@@ -285,20 +373,7 @@
       }
 
 
-    });
 
-  </script>
-
-
-  <script type="text/javascript" src="/node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
-  <script>
-    var rootUrl = window.location.href+"play/";
-    $(document).ready(function() {
-      link2 = rootUrl+"{{ rand }}";
-      $('#qr-code').qrcode(link2);
-
-
-      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
 
     });
   </script>

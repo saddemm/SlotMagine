@@ -2,29 +2,32 @@
 
 {% block body %}
 
-  <body id="page-mobile" class="page-mobile">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="block block-one text">
+          <span><i id="essais">3</i> essais restants </span>
+        </div>
 
+        <div class="block block-two rotate">
+          <img class="img-port" src="/images/portrait-rotate.png" alt="">
+          <i class="fa fa-thumbs-up img-land" aria-hidden="true"></i>
+        </div>
 
+        <div class="block block-three text">
+          <span>prêt à jouer  </span>
+        </div>
 
-  <header class="masthead">
-    <div class="button-play">
-      <button id="btn-play" class="btn btn-default btn-xl js-scroll-trigger">Jouer</button>
-    </div>
+        <div class="block block-four text">
+          <span>Basculer votre téléphone afin d'effectuer un mouvement de levier </span>
+        </div>
 
-    <div class="text text-title">
-      <span><i id="essais">3</i> essais restants</span>
+        <div class="block block-five">
+          <button id="app-play" class="btn btn-xl">Jouer</button>
+        </div>
+      </div>
     </div>
-    <div class="image-rotate">
-      <img src="/images/portrait-rotate.png" alt="">
-    </div>
-    <div class="text text-middle">
-      <span>prêt à jouer  </span>
-    </div>
-    <div class="text text-button">
-      <span>Basculer votre téléphone afin d'effectuer un mouvement de levier </span>
-    </div>
-
-  </header>
+  </div>
 
 
   <!-- Modal -->
@@ -64,11 +67,6 @@
       </div>
     </div>
   </div>
-
-
-
-  </body>
-
 
   <script>
 
@@ -139,15 +137,15 @@
 
 
       window.addEventListener("deviceorientation", function(event) {
-        if (Math.round(event.beta)<0 && !$('#btn-play').is(":disabled")){
-          $('#btn-play').click();
+        if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
+          $('#app-play').click();
 
         }
 
       }, true);
 
 
-      $('#btn-play').click(function(){
+      $('#app-play').click(function(){
 
          navigator.vibrate(5000);
 
@@ -162,8 +160,8 @@
 
         setTimeout(function(){
 
-          document.getElementById('btn-play').innerHTML = oldValue;
-            document.getElementById('btn-play').removeAttribute('disabled');
+          document.getElementById('app-play').innerHTML = oldValue;
+            document.getElementById('app-play').removeAttribute('disabled');
 
 
         }, 5000)

@@ -1,0 +1,161 @@
+html, body {
+
+
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background: #1a2434;
+    font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+}
+
+/*.container-fluid {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+    box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}*/
+
+.text, .text p, .text span {
+    font: 1.2em Helvetica, Arial, Sans-Serif;
+    font-weight: 100;
+    letter-spacing: 1px;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0px 3px 8px #2a2a2a;
+}
+
+.block {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    font-size: 1.8em;
+    font-weight: 100;
+    text-align: center;
+}
+
+.block-one {
+    margin-top: 2em;
+}
+
+.block-two.rotate {
+    height: 10em;
+    margin: 0 auto;
+}
+.block-two.rotate img {
+    width: auto;
+    height: 100%;
+    max-width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+
+}
+
+.block-two.rotate img.img-port {
+    display: block;
+    filter: brightness(0) invert(1);
+}
+
+.block-two.rotate i.img-land {
+    display: none;
+}
+
+.block-two.rotate i.img-land {
+    color: #FF9800;
+    font-size: 4em;
+    margin : 50px auto;
+    transition : all 1s;
+}
+
+.block-two.rotate img, .block-two.rotate i {
+    -webkit-animation: bummer 0.5s;
+    animation: bummer 0.5s;
+    -webkit-transform: scale(0,0);
+    transform: scale(0,0);
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.block-three span {
+    text-shadow: -1px -1px 0 rgba(255,255,255,0.3), 1px 1px 0 rgba(0,0,0,0.8);
+    color: #fff;
+    opacity: 0.9;
+    font: 700 1.5em 'Bitter';
+}
+
+.block-four span {
+    font-size: 1em;
+    margin : 10px auto;
+}
+
+.block-five {
+    padding: 20px;
+}
+
+.block-five button {
+    width: 60%;
+    margin: 0 auto;
+    font-size: 0.7em;
+    font-weight: 700;
+    background: #fff;
+    color: #FF9800;
+    border-radius: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    outline: none;
+    box-shadow: 0 7px 5px rgba(0, 0, 0, 0.7);
+}
+
+.block-five button:hover, .block-five button:focus {
+    color: #fff;
+    background: #FF9800;
+}
+
+.block-five button:focus{
+    outline: none!important;
+}
+
+
+@-webkit-keyframes bummer {
+    100% {
+        -webkit-transform: scale(1,1);
+    }
+}
+
+@keyframes bummer {
+    100% {
+        transform: scale(1,1);
+    }
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
+    html {
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        width: 100vh;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+
+    .block-two.rotate img.img-port {
+        display: none;
+    }
+
+    .block-two.rotate i.img-land {
+        display: block;
+    }
+
+    .block-five button {
+        color: #fff;
+        background: #FF9800;
+    }
+}
