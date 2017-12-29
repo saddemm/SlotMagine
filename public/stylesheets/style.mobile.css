@@ -134,28 +134,3 @@ body {
 }
 
 
-
-@media screen and (min-width: 320px) and (max-width: 767px) and (orientation: landscape) {
-    html {
-        transform: rotate(-90deg);
-        transform-origin: left top;
-        width: 100vh;
-        overflow-x: hidden;
-        position: absolute;
-        top: 100%;
-        left: 0;
-    }
-
-    .block-two.rotate img.img-port {
-        display: none;
-    }
-
-    .block-two.rotate i.img-land {
-        display: block;
-    }
-
-    .block-five button {
-        color: #fff;
-        background: #FF9800;
-    }
-}
