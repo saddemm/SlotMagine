@@ -129,6 +129,10 @@
   <script>
     var rootUrl = window.location.href+"play/";
     $(document).ready(function() {
+      if (rootUrl != 'http://localhost:3000/play/'){
+        rootUrl = 'http://acrelec.digital-link.io/play/';
+    }
+      console.log(rootUrl);
       link2 = rootUrl+"{{ rand }}";
 
       // getting the shortener url from google
