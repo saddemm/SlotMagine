@@ -3,11 +3,9 @@ var router = express.Router();
 
 
 /* GET users listing. */
-router.get('/:code', function(req, res, next) {
-  code = req.params.code;
+router.get('/:rand', function(req, res, next) {
 
-
-  res.render('play', {code : code});
+  res.render('play', {rand : req.params.rand});
 });
 
 module.exports = router;

@@ -3,6 +3,8 @@
  */
 $(function () {
 
+    var rand = $('#rand').data('rand');
+
     function isValidEmailAddress(emailAddress) {
         var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return pattern.test(emailAddress);
@@ -59,7 +61,7 @@ $(function () {
 
         console.log(email);
         customer = {email : email, telephone : telephone};
-        roomObj = {room : '{{ code}}', customer : customer };
+        roomObj = {room : rand, customer : customer };
 
 
         socket.emit("joinRoom",roomObj);
@@ -81,7 +83,7 @@ $(function () {
         navigator.vibrate(5000);
 
 
-        socket.emit('playPressed',"{{ code }}");
+        socket.emit('playPressed',rand);
 
 
         var oldValue = $(this).text();

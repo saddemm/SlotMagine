@@ -2,12 +2,13 @@
  * Created by SaddeM on 30/12/2017.
  */
 var rootUrl = window.location.href+"play/";
+var rand = $('#rand').data('rand');
 $(document).ready(function() {
     if (rootUrl != 'http://localhost:3000/play/'){
         rootUrl = 'http://acrelec.digital-link.io/play/';
     }
     console.log(rootUrl);
-    link2 = rootUrl+"{{ rand }}";
+    link2 = rootUrl+rand;
 
     /*$('#qr-code').qrcode(link2);
      $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");*/
@@ -143,7 +144,7 @@ $(document).ready(function(){
     var socket = io();
 
     var reloader = function reloader(){
-        socket.emit('loose', '{{ rand }}');
+        socket.emit('loose', rand);
         window.location.reload();
     }
 
@@ -169,7 +170,7 @@ $(document).ready(function(){
     });
 
 
-    socket.emit('createRoom','{{ rand }}');
+    socket.emit('createRoom',rand);
 
 
 
@@ -259,7 +260,7 @@ $(document).ready(function(){
     function checks(active1, active2, active3) {
         console.log(active1 + " " + active2 + " " + active3);
 
-        packetChecker = {active1: active1, active2: active2, active3: active3, room: '{{ rand }}'}
+        packetChecker = {active1: active1, active2: active2, active3: active3, room: rand}
 
         socket.emit('checks', packetChecker);
 
