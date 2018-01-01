@@ -1,17 +1,19 @@
 /**
  * Created by SaddeM on 30/12/2017.
  */
-var rootUrl = window.location.href+"play/";
-var rand = $('#rand').data('rand');
+
 $(document).ready(function() {
+
+    var rootUrl = window.location.href+"play/";
+    var rand = $('#rand').data('rand');
+    var link2 = rootUrl+rand;
     if (rootUrl != 'http://localhost:3000/play/'){
         rootUrl = 'http://acrelec.digital-link.io/play/';
-    }
-    console.log(rootUrl);
-    link2 = rootUrl+rand;
 
-    /*$('#qr-code').qrcode(link2);
-     $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");*/
+
+
+
+
 
     // getting the shortener url from google
     $.ajax({
@@ -30,6 +32,11 @@ $(document).ready(function() {
 
         }
     });
+
+    }else{
+        $('#qr-code').qrcode(link2);
+         $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+    }
 
 });
 

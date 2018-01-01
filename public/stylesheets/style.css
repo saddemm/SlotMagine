@@ -24,7 +24,6 @@ a {
 .site-wrapper {
   display: block;
   width: 100%;
-  height: 100%;
   min-height: 100%;
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
   box-shadow: inset 0 0 100px rgba(0,0,0,.5);
@@ -299,5 +298,81 @@ a {
   }
 }
 
+/* Sur les écrans, quand la largeur de la fenêtre fait au maximum 1280px */
+@media screen and (max-width: 1280px) {
 
+}
+
+/* Sur tous types d'écran, quand la largeur de la fenêtre est comprise entre 1024px et 1280px */
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+
+}
+
+/* Sur les téléviseurs */
+@media tv {
+
+}
+
+/* Sur tous types d'écrans orientés verticalement */
+@media all and (orientation: portrait), screen and (max-width: 1080px) and (min-height: 1920px) {
+
+  .masthead {
+    width: 100%;
+    position: relative;
+  }
+
+  .masthead .inner {
+    width: 35%;
+    margin : 5vw auto 2vw;
+  }
+
+  .main-container {
+    height: 100%;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .main-container .b-left, .main-container .b-right {
+    width: 100%;
+    height: auto;
+    top: 10%;
+  }
+
+  .main-container .b-left .mb-5 {
+    text-align: center;
+    font-size: 6vw;
+  }
+  .main-container .b-left span {
+    font-size: 3vw;
+  }
+  .main-container .b-left .btn-outline {
+    font-size: 2vw;
+    padding: 2vw 5vw;
+  }
+
+  .b-right .b-mobile {
+    position: relative;
+    width: 60%;
+    height: auto;
+    padding: 10vw;
+    right: 0;
+    left: 0;
+    float: none;
+    margin : 0 auto;
+  }
+
+  .b-mobile .block-qrcode {
+    display: block;
+    position: absolute;
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+    top: 35%;
+    left: 25%;
+  }
+
+  .mastfoot .inner {
+    font-size: 2vw;
+  }
+}
 
