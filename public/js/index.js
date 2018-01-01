@@ -4,9 +4,9 @@
 
 $(document).ready(function() {
 
-    var rootUrl = window.location.href+"play/";
-    var rand = $('#rand').data('rand');
-    var link2 = rootUrl+rand;
+     rootUrl = window.location.href+"play/";
+     rand = $('#rand').data('rand');
+     link2 = rootUrl+rand;
     if (rootUrl != 'http://localhost:3000/play/'){
         rootUrl = 'http://acrelec.digital-link.io/play/';
 

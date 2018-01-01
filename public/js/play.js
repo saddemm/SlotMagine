@@ -44,10 +44,10 @@ $(function () {
     socket.on("error",function(err){
         console.log('there is an error');
         if(err==1){
-            $('body').text('Cette partie n"existe pas');
+            //$('body').text('Cette partie n"existe pas');
             window.location = "/notfound";
         }else if(err==2){
-            $('body').text('Partie déjà en cours');
+            //$('body').text('Partie déjà en cours');
             window.location = "/already";
         }
 
