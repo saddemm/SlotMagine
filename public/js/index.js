@@ -28,14 +28,14 @@ $(document).ready(function() {
             $('#qr-code').qrcode(shortenerUrl);
 
 
-            $('#qr-link-2').html("<a href="+shortenerUrl+">"+shortenerUrl+"</a>");
+            $('#qr-link-2').html("<a target='_blank' href="+shortenerUrl+">"+shortenerUrl+"</a>");
 
         }
     });
 
     }else{
         $('#qr-code').qrcode(link2);
-         $('#qr-link-2').html("<a href="+link2+">"+link2+"</a>");
+         $('#qr-link-2').html("<a target='_blank' href="+link2+">"+link2+"</a>");
     }
 
 });
