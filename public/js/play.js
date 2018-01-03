@@ -99,7 +99,9 @@ $(function () {
 
     window.addEventListener("deviceorientation", function(event) {
         if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
-            startSchuffle(null);
+
+            var that = $('#app-play');
+            startSchuffle(that);
 
         }
 
