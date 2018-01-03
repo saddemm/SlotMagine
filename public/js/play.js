@@ -2,6 +2,7 @@
  * Created by SaddeM on 30/12/2017.
  */
 $(function () {
+    gessais = null;
 
     rand = $('#rand').data('rand');
 
@@ -115,7 +116,11 @@ $(function () {
     });
 
     function startSchuffle(thats){
+
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+        if (navigator.vibrate){
         navigator.vibrate(1000);
+        }
 
 
         socket.emit('playPressed',rand);
@@ -145,6 +150,10 @@ $(function () {
     function winner(){
         window.location = "/win";
     }
+
+    /*window.onerror = function(error) {
+        alert(error);
+    };*/
 
 
 

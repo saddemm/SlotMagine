@@ -7,7 +7,7 @@ $(document).ready(function() {
      rootUrl = window.location.href+"play/";
      rand = $('#rand').data('rand');
      link2 = rootUrl+rand;
-    if (rootUrl != 'http://localhost:3000/play/'){
+    if (rootUrl != 'http://localhost:3000/play/' && rootUrl != 'http://192.168.1.60:3000/play/'){
         rootUrl = 'http://acrelec.digital-link.io/play/';
         link2 = rootUrl+rand;
 
