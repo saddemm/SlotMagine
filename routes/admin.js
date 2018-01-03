@@ -52,7 +52,7 @@ module.exports = function(app,passport) {
         failureFlash: true }));
 
     /* GET users listing. */
-    app.get('/admin', isLoggedIn, function (req, res, next) {
+    app.get('/admin', function (req, res, next) {
 
         Customer.find({}).sort('-created_at').exec(function (err, customers) {
             if (err)

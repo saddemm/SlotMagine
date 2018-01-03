@@ -111,8 +111,14 @@ io.on('connection', function(socket){
 
   socket.on('firstTime', function (rand) {
 
+    // on voit si la room existe avant
+    if (io.sockets.adapter.rooms[rand]) {
 
-    io.to(socket.id).emit('checkFirst',io.sockets.adapter.rooms[rand]);
+      io.to(socket.id).emit('checkFirst', io.sockets.adapter.rooms[rand]);
+    }else{
+
+    io.to(socket.id).emit('error',1);
+    }
 
   });
   
