@@ -8,7 +8,7 @@ $(document).ready(function() {
      rand = $('#rand').data('rand');
      link2 = rootUrl+rand;
     if (rootUrl != 'http://localhost:3000/play/' && rootUrl != 'http://192.168.1.60:3000/play/'){
-        rootUrl = 'http://144.217.5.57:3000/play/';
+        rootUrl = 'http://vps163824.vps.ovh.ca:3000/play/';
         link2 = rootUrl+rand;
 
 
