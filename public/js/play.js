@@ -151,9 +151,9 @@ $(function () {
         window.location = "/win";
     }
 
-    /*window.onerror = function(error) {
+    window.onerror = function(error) {
         alert(error);
-    };*/
+    };
 
 
 
