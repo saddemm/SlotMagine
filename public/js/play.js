@@ -99,6 +99,7 @@ $(function () {
 
 
     window.addEventListener("deviceorientation", function(event) {
+        document.getElementById("orientation").innerHTML = "beta :<br>"+Math.round(event.beta)+"<br> gama: "+Math.round(event.gamma)+"<br> alpha: "+Math.round(event.alpha);
         if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
 
             alert('bangalou');
