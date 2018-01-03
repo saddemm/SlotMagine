@@ -99,7 +99,7 @@ $(function () {
 
     window.addEventListener("deviceorientation", function(event) {
         if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
-            $('#app-play').click();
+            startSchuffle(null);
 
         }
 
@@ -108,15 +108,20 @@ $(function () {
 
     $('#app-play').click(function(){
 
+        startSchuffle(this);
+
+    });
+
+    function startSchuffle(thats){
         navigator.vibrate(1000);
 
 
         socket.emit('playPressed',rand);
 
 
-        var oldValue = $(this).text();
-        $(this).attr("disabled", "disabled");
-        $(this).text("Wait...");
+        var oldValue = $(thats).text();
+        $(thats).attr("disabled", "disabled");
+        $(thats).text("Wait...");
 
 
         setTimeout(function(){
@@ -130,9 +135,7 @@ $(function () {
 
         }, 5000)
 
-    });
-
-
+    }
     function looser(){
         window.location = "/loose";
     }
