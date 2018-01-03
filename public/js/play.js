@@ -101,7 +101,6 @@ $(function () {
     window.addEventListener("deviceorientation", function(event) {
         if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
 
-            alert('bangalou');
             var that = $('#app-play');
             startSchuffle(that);
 
