@@ -7,17 +7,22 @@ var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
 mongoose.connect('mongodb://localhost/acrelec', { useMongoClient: true });
 
+var passport = require('passport');
+var flash    = require('connect-flash');
+var session      = require('express-session');
+
+
+var app = express();
 
 var index = require('./routes/index');
 var play = require('./routes/play');
 var api = require('./routes/api');
-var admin = require('./routes/admin');
 
-var app = express();
+
+
 
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
-
 
 
 // view engine setup
@@ -34,10 +39,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use('/node_modules',  express.static(__dirname + '/node_modules'));
 
+// required for passport
+app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash()); // use connect-flash for flash messages stored in session
+
+
 app.use('/', index);
 app.use('/play', play);
 app.use('/api', api.router);
-app.use('/admin', admin);
+var admin = require('./routes/admin')(app, passport);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -75,6 +87,9 @@ io.on('connection', function(socket){
   socket.on('createRoom', function (room) {
     console.log("Created: "+room);
     socket.join(room);
+
+    io.sockets.adapter.rooms[room].activation=0;
+    io.sockets.adapter.rooms[room].essais = 3;
     console.log(io.sockets.adapter.rooms[room]);
   });
 
@@ -90,7 +105,14 @@ io.on('connection', function(socket){
 
   socket.on('loose', function (room) {
 
-      io.to(room).emit('Result',false);
+    io.to(room).emit('Result',false);
+
+  });
+
+  socket.on('firstTime', function (rand) {
+
+
+    io.to(socket.id).emit('checkFirst',io.sockets.adapter.rooms[rand]);
 
   });
   
@@ -101,11 +123,17 @@ io.on('connection', function(socket){
 
       if (io.sockets.adapter.rooms[roomObj.room].length< 2 ) {
 
-        api.addCustomer(roomObj.customer);
-        console.log("Joined: " + roomObj.room);
-        socket.essais = 3;
+
+
+        //il peux être null au cas ce n'est pas la premiere fois qu'il accéder a la room
         socket.join(roomObj.room);
+
+        if (io.sockets.adapter.rooms[roomObj.room].activation!=1){
+        api.addCustomer(roomObj.customer);
         io.to(roomObj.room).emit('joinRoom');
+        }
+
+        io.sockets.adapter.rooms[roomObj.room].activation=1;
 
       }else{
         io.to(socket.id).emit('error',2);
@@ -120,11 +148,15 @@ io.on('connection', function(socket){
 
   socket.on('playPressed', function(room){
 
-    if (socket.essais>0){
+    if (io.sockets.adapter.rooms[room].essais>0){
       
     console.log('playpressed Now !:');
-    socket.essais--;
-    io.to(room).emit('playPressed',socket.essais);
+
+
+      io.sockets.adapter.rooms[room].essais--;
+      var essais = io.sockets.adapter.rooms[room].essais;
+
+    io.to(room).emit('playPressed',essais);
       
     }
 

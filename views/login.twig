@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Acrelec - Administration</title>
+
+
+  <link href="favicon.ico" rel="shortcut icon">
+
+
+
+  <script src="/admin/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="/admin/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" type="text/css" href="/admin/common/css/source/main.css">
+
+
+  <script src="/admin/jquery.dataTables.min.js"></script>
+  <script src="/admin/dataTables.bootstrap4.min.js"></script>
+  <script src="/admin/jquery.validation.min.js"></script>
+  <script src="/admin/bootstrap-show-password.min.js"></script>
+
+  <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+  <script src="//cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+
+
+</head>
+<body class="theme-default">
+
+<section class="page-content">
+  <div class="page-content-inner" style="background-image: url(../assets/common/img/temp/login/4.jpg)">
+
+    <!-- Login Omega Page -->
+    <div class="single-page-block-header">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="logo">
+            <a href="javascript: history.back();">
+              <img src="/admin/common/img/logo.png" alt="Clean UI Admin Template" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="single-page-block">
+      <div class="single-page-block-inner effect-3d-element">
+        <div class="blur-placeholder"><!-- --></div>
+        <div class="single-page-block-form">
+          <h3 class="text-center">
+            <i class="icmn-enter margin-right-10"></i>
+            Log In
+          </h3>
+          <h5>{{ message }}</h5>
+          <br />
+          <form id="form-validation" name="form-validation" method="POST" action="./">
+            <div class="form-group">
+              <input id="validation-email"
+                     class="form-control"
+                     placeholder="Email"
+                     name="email"
+                     type="text"
+                     data-validation="[EMAIL]">
+            </div>
+            <div class="form-group">
+              <input id="validation-password"
+                     class="form-control password"
+                     name="password"
+                     type="password" data-validation="[L>=5]"
+                     data-validation-message="$ must be at least 6 characters"
+                     placeholder="Password">
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary width-150">Sign In</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- End Login Omega Page -->
+
+  </div>
+
+  <!-- Page Scripts -->
+  <script>
+    $(function() {
+
+      // Add class to body for change layout settings
+      $('body').addClass('single-page single-page-inverse');
+
+      // Form Validation
+      $('#form-validation').validate({
+        submit: {
+          settings: {
+            inputContainer: '.form-group',
+            errorListClass: 'form-control-error',
+            errorClass: 'has-danger'
+          }
+        }
+      });
+
+      // Show/Hide Password
+      $('.password').password({
+        eyeClass: '',
+        eyeOpenClass: 'icmn-eye',
+        eyeCloseClass: 'icmn-eye-blocked'
+      });
+
+      // Set Background Image for Form Block
+      function setImage() {
+        var imgUrl = $('.page-content-inner').css('background-image');
+
+        $('.blur-placeholder').css('background-image', imgUrl);
+      };
+
+      function changeImgPositon() {
+        var width = $(window).width(),
+                height = $(window).height(),
+                left = - (width - $('.single-page-block-inner').outerWidth()) / 2,
+                top = - (height - $('.single-page-block-inner').outerHeight()) / 2;
+
+
+        $('.blur-placeholder').css({
+          width: width,
+          height: height,
+          left: left,
+          top: top
+        });
+      };
+
+      setImage();
+      changeImgPositon();
+
+      $(window).on('resize', function(){
+        changeImgPositon();
+      });
+
+      // Mouse Move 3d Effect
+      var rotation = function(e){
+        var perX = (e.clientX/$(window).width())-0.5;
+        var perY = (e.clientY/$(window).height())-0.5;
+        TweenMax.to(".effect-3d-element", 0.4, { rotationY:15*perX, rotationX:15*perY,  ease:Linear.easeNone, transformPerspective:1000, transformOrigin:"center" })
+      };
+
+
+    });
+  </script>
+  <!-- End Page Scripts -->
+</section>
+
+<div class="main-backdrop"><!-- --></div>
+
+</body>
+</html>

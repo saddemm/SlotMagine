@@ -3,7 +3,7 @@
  */
 $(function () {
 
-    var rand = $('#rand').data('rand');
+    rand = $('#rand').data('rand');
 
     function isValidEmailAddress(emailAddress) {
         var pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -11,12 +11,35 @@ $(function () {
     }
 
 
+
+    var socket = io();
+
+    socket.emit("firstTime",rand);
+
+
+    socket.on('checkFirst', function(roomFirstObj){
+
+        if(roomFirstObj.activation!=1){
+            openModal();
+        }else{
+            roomObj = {room : rand, customer : null };
+            socket.emit("joinRoom",roomObj);
+            $("#essais").text(roomFirstObj.essais);
+        }
+
+    });
+
+
+
+    function openModal(){
     $("#subscribes").modal(
         {
             backdrop: 'static',
             keyboard: false
         }
     );
+    }
+
 
     $( "input[type='email']" ).bind('keyup change', function() {
         if (isValidEmailAddress(this.value)) {
@@ -28,12 +51,14 @@ $(function () {
 
 
 
-    var socket = io();
 
     socket.on('playPressed', function(essais){
         $("#essais").text(essais);
 
     });
+
+
+
 
     socket.on('Result', function(what){
 
@@ -65,6 +90,7 @@ $(function () {
 
 
         socket.emit("joinRoom",roomObj);
+
 
     });
 
