@@ -12,10 +12,6 @@ $(document).ready(function() {
         link2 = rootUrl+rand;
 
 
-
-
-
-
     // getting the shortener url from google
     $.ajax({
         url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDAoD3F7pUxYDUr1d4_gIDEkoxdst8Qbps',
@@ -29,14 +25,14 @@ $(document).ready(function() {
             $('#qr-code').qrcode(shortenerUrl);
 
 
-            $('#qr-link-2').html("<a target='_blank' href="+shortenerUrl+">"+shortenerUrl+"</a>");
+            $('#qr-link-2').html("<a>"+shortenerUrl+"</a>");
 
         }
     });
 
     }else{
         $('#qr-code').qrcode(link2);
-         $('#qr-link-2').html("<a target='_blank' href="+link2+">"+link2+"</a>");
+         $('#qr-link-2').html("<a>"+link2+"</a>");
     }
 
 });
@@ -168,9 +164,11 @@ $(document).ready(function(){
 
     socket.on('playPressed', function(essais){
 
+        //use gessais to global to hundle the lose
         gessais = essais;
 
         $("#essais").text(gessais);
+
 
         startSchufle();
 
@@ -235,6 +233,9 @@ $(document).ready(function(){
         }
 
         if (this.element[0].id=='machine3'){
+            if (gessais==1){
+                $("#lastEssais").text("This is your last chance");
+            }
             checks(active1, active2, active3);
         }
 

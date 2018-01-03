@@ -53,7 +53,9 @@ $(function () {
 
 
     socket.on('playPressed', function(essais){
-        $("#essais").text(essais);
+        gessais = essais;
+        $("#essais").text(gessais);
+
 
     });
 
@@ -106,7 +108,7 @@ $(function () {
 
     $('#app-play').click(function(){
 
-        navigator.vibrate(5000);
+        navigator.vibrate(1000);
 
 
         socket.emit('playPressed',rand);
@@ -114,13 +116,16 @@ $(function () {
 
         var oldValue = $(this).text();
         $(this).attr("disabled", "disabled");
-        $(this).text("Patientez...");
+        $(this).text("Wait...");
 
 
         setTimeout(function(){
 
             document.getElementById('app-play').innerHTML = oldValue;
             document.getElementById('app-play').removeAttribute('disabled');
+            if (gessais==1){
+                $("#lastEssais").text("This is your last chance");
+            }
 
 
         }, 5000)

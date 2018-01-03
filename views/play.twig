@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-xs-12">
         <div class="block block-one text">
-          <span><i id="essais">3</i> essais restants </span>
+          <span id="lastEssais"><i id="essais">3</i> attemps left </span>
         </div>
 
         <div class="block block-two rotate">
@@ -15,15 +15,15 @@
         </div>
 
         <div class="block block-three text">
-          <span>prêt à jouer  </span>
+          <span>Ready to play  </span>
         </div>
 
         <div class="block block-four text">
-          <span>Basculer votre téléphone afin d'effectuer un mouvement de levier </span>
+          <span>Shake your phone to try your luck ! </span>
         </div>
 
         <div class="block block-five">
-          <button id="app-play" class="btn btn-xl">Jouer</button>
+          <button id="app-play" class="btn btn-xl">Play</button>
         </div>
       </div>
     </div>
@@ -35,7 +35,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Avant de jouer, Inscrivez vous</h5>
+          <h5 class="modal-title text-success" id="exampleModalLabel">Register to play.</h5>
 
         </div>
         <form class="form-horizontal" role="form">
@@ -51,17 +51,17 @@
             </div>
             <div class="form-group">
               <label class="col-sm-2 control-label"
-                     for="inputTel" >Téléphone (optionnel)</label>
+                     for="inputTel" >Phone (optional)</label>
               <div class="col-sm-10">
                 <input type="text" class="form-control"
-                       id="inputTel" placeholder="Téléphone"/>
+                       id="inputTel" placeholder="Phone"/>
               </div>
             </div>
 
 
         </div>
         <div class="modal-footer">
-          <button type="submit" id="starty" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Jouer !</button>
+          <button type="submit" id="starty" class="btn btn-primary" data-dismiss="modal" disabled="disabled">Play !</button>
         </div>
         </form>
       </div>
