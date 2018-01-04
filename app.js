@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose   = require('mongoose');
-mongoose.connect('mongodb://localhost/acrelec', { useMongoClient: true });
+mongoose.connect('mongodb://127.0.0.1/acrelec', { useMongoClient: true });
 
 var passport = require('passport');
 var flash    = require('connect-flash');
@@ -106,6 +106,23 @@ io.on('connection', function(socket){
   socket.on('loose', function (room) {
 
     io.to(room).emit('Result',false);
+
+  });
+
+  //on voit si il a déja jouer aujourd'hui
+  socket.on('checkDevice', function (uniqDevice) {
+
+    api.canPlayToday(uniqDevice, function(err,result){
+
+      //on test sur l'unique device
+      if (!result) {
+
+        io.to(socket.id).emit('Result',false);
+        console.log('tu as déja joué mon chere')
+      }
+
+    });
+
 
   });
 

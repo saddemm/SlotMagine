@@ -15,6 +15,7 @@
     "tests"
   ],
   "dependencies": {
-    "jQuery-SlotMachine": "jquery-slotmachine#^3.0.1"
+    "jQuery-SlotMachine": "jquery-slotmachine#^3.0.1",
+    "clientjs": "^0.1.5"
   }
 }

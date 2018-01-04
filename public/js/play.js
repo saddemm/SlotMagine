@@ -2,8 +2,19 @@
  * Created by SaddeM on 30/12/2017.
  */
 $(function () {
+
+    // Create a new ClientJS object
+    var client = new ClientJS();
+
+// Get the client's fingerprint id
+    var fingerprint = client.getFingerprint();
+
+
+
+
     gessais = null;
 
+    uniqDevice = fingerprint;
     rand = $('#rand').data('rand');
 
     function isValidEmailAddress(emailAddress) {
@@ -16,6 +27,11 @@ $(function () {
     var socket = io();
 
     socket.emit("firstTime",rand);
+
+
+    socket.emit("checkDevice",uniqDevice);
+
+
 
 
     socket.on('checkFirst', function(roomFirstObj){
@@ -84,11 +100,17 @@ $(function () {
 
     $("#starty").on('click', function(){
 
+        $("#fullView").show();
+
+        var firstname = $("#inputFirstname").val();
+        var lastname = $("#inputLastname").val();
+        var company = $("#inputCompany").val();
         var email = $("#inputEmail").val();
         var telephone = $("#inputTel").val();
 
-        console.log(email);
-        customer = {email : email, telephone : telephone};
+
+
+        customer = {firstname : firstname, lastname : lastname, company: company, email : email, telephone : telephone, uniq : uniqDevice};
         roomObj = {room : rand, customer : customer };
 
 
@@ -136,7 +158,7 @@ $(function () {
             document.getElementById('app-play').innerHTML = oldValue;
             document.getElementById('app-play').removeAttribute('disabled');
             if (gessais==1){
-                $("#lastEssais").text("This is your last chance");
+                $("#lastEssais").text("This is your last chance !");
             }
 
 

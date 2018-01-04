@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var Customer     = require('../models/customer');
 var Mailer     = require('../components/mailer');
-
+var moment = require('moment');
+var today = moment().startOf('day');
+var tomorrow = moment(today).add(1, 'days')
 
 
 router.route('/customers')
@@ -41,8 +43,12 @@ router.route('/customers')
 addCustomer = function(newCust){
   var customer = new Customer();
 
+  customer.firstname = newCust.firstname;
+  customer.lastname = newCust.lastname;
+  customer.company = newCust.company;
   customer.email = newCust.email;
   customer.telephone = newCust.telephone;
+  customer.uniq = newCust.uniq;
 
   // save the bear and check for errors
   customer.save(function(err,result) {
@@ -55,5 +61,28 @@ addCustomer = function(newCust){
   });
 },
 
+    canPlayToday = function(uniq, callback){
 
-module.exports = { router : router, addCustomer : addCustomer }
+
+
+         Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
+
+             var canplay = true;
+             
+            if (err){
+                console.log(err);
+            }
+
+            if (customers.length > 0){
+                canplay =  false;
+            }
+
+             callback(null,canplay);
+
+        });
+
+
+    }
+
+
+module.exports = { router : router, addCustomer : addCustomer , canPlayToday : canPlayToday}

@@ -81,15 +81,19 @@
               <table class="table table-hover nowrap" id="participantsTable" width="100%">
                 <thead>
                 <tr>
+                  <th>First name & Last name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Company</th>
                   <th>Date</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
+                  <th>First name & Last name</th>
                   <th>Email</th>
                   <th>Phone</th>
+                  <th>Company</th>
                   <th>Date</th>
                 </tr>
                 </tfoot>
@@ -97,9 +101,11 @@
 
                 {% for customer in customers%}
                   <tr>
+                    <td>{{ customer.lastname }} {{ customer.firstname }}</td>
                     <td>{{ customer.email }}</td>
                     <td>{{ customer.telephone }}</td>
-                    <td>{{ customer.date|date('Y M d H:i') }}</td>
+                    <td>{{ customer.company }}</td>
+                    <td>{{ customer.created_at|date('Y M d H:i') }}</td>
                   </tr>
                 {% endfor %}
 

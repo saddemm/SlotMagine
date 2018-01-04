@@ -234,7 +234,7 @@ $(document).ready(function(){
 
         if (this.element[0].id=='machine3'){
             if (gessais==1){
-                $("#lastEssais").text("This is your last chance");
+                $("#lastEssais").html("This is your last chance !");
             }
             checks(active1, active2, active3);
         }
