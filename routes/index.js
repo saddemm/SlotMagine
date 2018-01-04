@@ -28,5 +28,9 @@ router.get('/already', function(req, res, next) {
   res.render('already');
 });
 
+router.get('/tomorrow', function(req, res, next) {
+  res.render('tomorrow');
+});
+
 
 module.exports = router;

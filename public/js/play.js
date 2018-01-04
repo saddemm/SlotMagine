@@ -22,28 +22,35 @@ $(function () {
         return pattern.test(emailAddress);
     }
 
+    function isValidForm(){
+
+        var firstname = $("#inputFirstname").val();
+        var lastname = $("#inputLastname").val();
+        var email = $("#inputEmail").val();
+
+        if (firstname!='' && lastname!='' && isValidEmailAddress(email)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 
     var socket = io();
 
-    socket.emit("firstTime",rand);
+    fullObj = {uniqDevice : uniqDevice, rand : rand};
+
+    socket.emit("fullCheck",fullObj);
 
 
-    socket.emit("checkDevice",uniqDevice);
-
-
-
-
-    socket.on('checkFirst', function(roomFirstObj){
-
-        if(roomFirstObj.activation!=1){
+    socket.on('notToday', function(){
+        window.location = "/tomorrow";
+    });
+    
+    
+    socket.on('startGame', function(){
             openModal();
-        }else{
-            roomObj = {room : rand, customer : null };
-            socket.emit("joinRoom",roomObj);
-            $("#essais").text(roomFirstObj.essais);
-        }
-
     });
 
 
@@ -58,8 +65,10 @@ $(function () {
     }
 
 
-    $( "input[type='email']" ).bind('keyup change', function() {
-        if (isValidEmailAddress(this.value)) {
+
+    $( ".form-control" ).bind('keyup change', function() {
+        
+        if (isValidForm()) {
             $("#starty").removeAttr("disabled");
         }else{
             $("#starty").attr("disabled", "disabled");

@@ -88,7 +88,8 @@ io.on('connection', function(socket){
     console.log("Created: "+room);
     socket.join(room);
 
-    io.sockets.adapter.rooms[room].activation=0;
+    //Au cas ou on veut laisser la game actif
+    //io.sockets.adapter.rooms[room].activation=0;
     io.sockets.adapter.rooms[room].essais = 3;
     console.log(io.sockets.adapter.rooms[room]);
   });
@@ -109,36 +110,37 @@ io.on('connection', function(socket){
 
   });
 
-  //on voit si il a déja jouer aujourd'hui
-  socket.on('checkDevice', function (uniqDevice) {
-
-    api.canPlayToday(uniqDevice, function(err,result){
-
-      //on test sur l'unique device
-      if (!result) {
-
-        io.to(socket.id).emit('Result',false);
-        console.log('tu as déja joué mon chere')
-      }
-
-    });
-
-
-  });
-
-  socket.on('firstTime', function (rand) {
+  socket.on('fullCheck', function (fullObj) {
 
     // on voit si la room existe avant
-    if (io.sockets.adapter.rooms[rand]) {
+    if (io.sockets.adapter.rooms[fullObj.rand]) {
+      if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-      io.to(socket.id).emit('checkFirst', io.sockets.adapter.rooms[rand]);
-    }else{
+        api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
-    io.to(socket.id).emit('error',1);
+          //on test sur l'unique device
+          if (!result) {
+
+            io.to(socket.id).emit('notToday');
+            console.log('tu as déja joué mon chere')
+          } else {
+            io.to(socket.id).emit('startGame');
+            console.log('startGame');
+          }
+
+        });
+
+      }else{
+        io.to(socket.id).emit('error',2);
+      }
+
+    } else {
+
+      //dosen't exist
+      io.to(socket.id).emit('error', 1);
     }
 
   });
-  
   
   socket.on('joinRoom', function (roomObj) {
 
@@ -150,13 +152,9 @@ io.on('connection', function(socket){
 
         //il peux être null au cas ce n'est pas la premiere fois qu'il accéder a la room
         socket.join(roomObj.room);
-
-        if (io.sockets.adapter.rooms[roomObj.room].activation!=1){
         api.addCustomer(roomObj.customer);
         io.to(roomObj.room).emit('joinRoom');
-        }
 
-        io.sockets.adapter.rooms[roomObj.room].activation=1;
 
       }else{
         io.to(socket.id).emit('error',2);
