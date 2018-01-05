@@ -11,6 +11,8 @@ var passport = require('passport');
 var flash    = require('connect-flash');
 var session      = require('express-session');
 
+//temporarly test
+var Mailer     = require('./components/mailer');
 
 var app = express();
 
@@ -111,6 +113,10 @@ io.on('connection', function(socket){
   });
 
   socket.on('fullCheck', function (fullObj) {
+
+    //temporarly email send test
+    //Mailer.sendy('saddem.anene@esprit.tn');
+
 
     // on voit si la room existe avant
     if (io.sockets.adapter.rooms[fullObj.rand]) {

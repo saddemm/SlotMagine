@@ -21,7 +21,7 @@ router.route('/customers')
         if (err){
           res.send(err);
         }else{
-          Mailer.sendy(req.body.email);
+          //Mailer.sendy(req.body.email);
           res.json({ message: 'Customer created!', lastId : result._id});
         }
       });
