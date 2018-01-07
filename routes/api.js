@@ -43,7 +43,7 @@ router.route('/customers')
 router.route('/testy')
     .get(function(req, res, next) {
 
-        Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()}, "uniq" : {"$eq" : "1991453964"}}, function(err, customers) {
+        Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()} }, function(err, customers) {
             if (err)
                 res.send(err);
 
