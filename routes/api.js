@@ -4,7 +4,7 @@ var Customer     = require('../models/customer');
 var Mailer     = require('../components/mailer');
 var moment = require('moment');
 var today = moment().startOf('day');
-var tomorrow = moment(today).add(1, 'days')
+var tomorrow = moment(today).add(1, 'days');
 
 
 router.route('/customers')
@@ -40,6 +40,18 @@ router.route('/customers')
 
 });
 
+router.route('/testy')
+    .get(function(req, res, next) {
+
+        Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()}, "uniq" : {"$eq" : "1991453964"}}, function(err, customers) {
+            if (err)
+                res.send(err);
+
+            res.type('application/json');
+            res.send(JSON.stringify(customers, null, 1)); //\t or \n
+        });
+
+    });
 addCustomer = function(newCust){
   var customer = new Customer();
 
