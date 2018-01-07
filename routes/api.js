@@ -48,7 +48,7 @@ router.route('/testy')
                 res.send(err);
 
             res.type('application/json');
-            res.send(JSON.stringify(customers, null, 1)); //\t or \n
+            res.json({'today' : today, 'tomorrow' : tomorrow}); //\t or \n
         });
 
     });
