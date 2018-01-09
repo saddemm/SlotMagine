@@ -59,7 +59,7 @@ addCustomer = function(newCust){
   customer.company = newCust.company;
   customer.email = newCust.email;
   customer.telephone = newCust.telephone;
-  customer.uniq = newCust.uniq;
+  customer.uniq = "2763248376";
     //only for test
   customer.tester_date = todayFormat;
 
