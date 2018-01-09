@@ -42,7 +42,7 @@ router.route('/customers')
 router.route('/testy')
     .get(function(req, res, next) {
 
-        Customer.find({"created_at": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
+        Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
             if (err)
                 res.send(err);
 
@@ -61,7 +61,7 @@ addCustomer = function(newCust){
   customer.telephone = newCust.telephone;
   customer.uniq = newCust.uniq;
     //only for test
-  customer.created_at = todayFormat;
+  customer.tester_date = todayFormat;
 
   // save the bear and check for errors
   customer.save(function(err,result) {
@@ -78,7 +78,7 @@ addCustomer = function(newCust){
 
 
 
-         Customer.find({"created_at": {"$eq": todayFormat}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
+         Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
 
              var canplay = true;
              

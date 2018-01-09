@@ -105,7 +105,7 @@
                     <td>{{ customer.email }}</td>
                     <td>{{ customer.telephone }}</td>
                     <td>{{ customer.company }}</td>
-                    <td>{{ customer.created_at }}</td>
+                    <td>{{ customer.created_at|date('Y M d H:i') }}</td>
                   </tr>
                 {% endfor %}
 

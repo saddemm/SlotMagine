@@ -18,7 +18,8 @@ var CustomerSchema = new Schema({
         }},
     "telephone" : { type : String , maxlength: 50},
     "winner" : { type : Boolean },
-    "created_at": {type: String},
+    "created_at": {type: Date, default: Date.now},
+    "tester_date": {type: String},
     "uniq" : { type : String , required : true}
 
 });
