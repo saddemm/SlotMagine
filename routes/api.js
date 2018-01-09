@@ -3,8 +3,7 @@ var router = express.Router();
 var Customer     = require('../models/customer');
 var Mailer     = require('../components/mailer');
 var moment = require('moment');
-var today = moment().startOf('day');
-var tomorrow = moment(today).add(1, 'days');
+var todayFormat = moment().format('YYYY-DD-MM');
 
 
 router.route('/customers')
@@ -43,7 +42,7 @@ router.route('/customers')
 router.route('/testy')
     .get(function(req, res, next) {
 
-        Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()}, "uniq" : {"$eq" : "1991453964"}}, function(err, customers) {
+        Customer.find({"created_at": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
             if (err)
                 res.send(err);
 
@@ -61,6 +60,8 @@ addCustomer = function(newCust){
   customer.email = newCust.email;
   customer.telephone = newCust.telephone;
   customer.uniq = newCust.uniq;
+    //only for test
+  customer.created_at = todayFormat;
 
   // save the bear and check for errors
   customer.save(function(err,result) {
@@ -77,7 +78,7 @@ addCustomer = function(newCust){
 
 
 
-         Customer.find({"created_at": {"$gte": today.toDate(),"$lt": tomorrow.toDate()}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
+         Customer.find({"created_at": {"$eq": todayFormat}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
 
              var canplay = true;
              

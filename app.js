@@ -137,6 +137,7 @@ io.on('connection', function(socket){
         });
 
       }else{
+        //Already room
         io.to(socket.id).emit('error',2);
       }
 
