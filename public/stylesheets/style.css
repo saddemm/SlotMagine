@@ -283,6 +283,8 @@ label {
 .block-slot .randomize-block {
   width: 120px;
   height: 120px;
+  transform: scale(1.5);
+  -webkit-transform : scale(1.5);
 }
 
 .block-slot .randomize-block img {

@@ -85,7 +85,8 @@
                   <th>Email</th>
                   <th>Phone</th>
                   <th>Company</th>
-                  <th>Date</th>
+                  <th>Is winner ?</th>
+                  <th>Date submit</th>
                 </tr>
                 </thead>
                 <tfoot>
@@ -105,6 +106,13 @@
                     <td>{{ customer.email }}</td>
                     <td>{{ customer.telephone }}</td>
                     <td>{{ customer.company }}</td>
+                    <td>
+                      {% if customer.winner %}
+                      Yes
+                      {% else %}
+                      No
+                      {% endif %}
+                    </td>
                     <td>{{ customer.created_at|date('Y M d H:i') }}</td>
                   </tr>
                 {% endfor %}

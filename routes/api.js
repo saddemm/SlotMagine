@@ -51,7 +51,19 @@ router.route('/testy')
         });
 
     });
-addCustomer = function(newCust){
+router.route('/testy2')
+    .get(function(req, res, next) {
+
+        Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
+            if (err)
+                res.send(err);
+
+            res.type('application/json');
+            res.send(JSON.stringify(customers, null, 1)); //\t or \n
+        });
+
+    });
+addCustomer = function(newCust,callback){
   var customer = new Customer();
 
   customer.firstname = newCust.firstname;
@@ -65,11 +77,30 @@ addCustomer = function(newCust){
 
   // save the bear and check for errors
   customer.save(function(err,result) {
-    if (err)
-      console.log(err);
+      if (err){
+          res.send(err);
+      }else{
+          callback(null,result);
+      }
 
   });
 },
+    isWinner = function(winner,customer){
+        Customer.findOne(customer._id , function (err, result) {
+
+            if (err){
+                console.log(err);
+            }else{
+
+            result.winner = winner;
+            result.save();
+            console.log('Succeful winner updated '+winner);
+            }
+
+        });
+
+
+    },
 
     canPlayToday = function(uniq, callback){
 
@@ -95,4 +126,4 @@ addCustomer = function(newCust){
     }
 
 
-module.exports = { router : router, addCustomer : addCustomer , canPlayToday : canPlayToday}
+module.exports = { router : router, addCustomer : addCustomer , canPlayToday : canPlayToday, isWinner : isWinner}

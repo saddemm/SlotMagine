@@ -102,19 +102,24 @@ io.on('connection', function(socket){
     if (packetChecker.active1 == packetChecker.active2 && packetChecker.active2 == packetChecker.active3 && packetChecker.active3 == packetChecker.active1){
 
       console.log('You Win');
-      Mailer.sendy(io.sockets.adapter.rooms[room].emailUser, true);
+      api.isWinner(true,io.sockets.adapter.rooms[packetChecker.room].customer);
+      Mailer.sendy(io.sockets.adapter.rooms[packetChecker.room].customer.email, true);
 
       io.to(packetChecker.room).emit('Result',true);
-      console.log(io.sockets.adapter.rooms[packetChecker.room].emailUser);
+      console.log(io.sockets.adapter.rooms[packetChecker.room].customer.email);
     }
   });
 
   socket.on('loose', function (room) {
 
+    api.isWinner(false,io.sockets.adapter.rooms[room].customer);
     console.log('You Loose');
-    Mailer.sendy(io.sockets.adapter.rooms[room].emailUser, false);
+    Mailer.sendy(io.sockets.adapter.rooms[room].customer.email, false);
     io.to(room).emit('Result',false);
-    console.log(io.sockets.adapter.rooms[room].emailUser);
+    console.log("XXXXXXXXXXXXXXXx ID xXXXXXXXXXXXXXXXXXX");
+    console.log(io.sockets.adapter.rooms[room].customer._id);
+    console.log("XXXXXXXXXXXXXXXXXXXXx ID xXXXXXXXXXXXXXXXXX");
+
 
   });
 
@@ -130,13 +135,14 @@ io.on('connection', function(socket){
 
             console.log('Test on unique device processing ...');
           //on test sur l'unique device
-          if (!result) {
+          if (result) {
 
-            io.to(socket.id).emit('notToday');
-            console.log('tu as déja joué mon chere')
-          } else {
             io.to(socket.id).emit('startGame');
             console.log('startGame');
+
+          } else {
+            io.to(socket.id).emit('notToday');
+            console.log('tu as déja joué mon chere')
           }
 
         });
@@ -162,11 +168,12 @@ io.on('connection', function(socket){
 
       if (io.sockets.adapter.rooms[roomObj.room].length< 2 ) {
 
-
         socket.join(roomObj.room);
-        api.addCustomer(roomObj.customer);
         io.to(roomObj.room).emit('joinRoom');
-        io.sockets.adapter.rooms[roomObj.room].emailUser = roomObj.customer.email;
+
+        api.addCustomer(roomObj.customer, function(err,result){
+          io.sockets.adapter.rooms[roomObj.room].customer=result;
+        });
 
 
       }else{
