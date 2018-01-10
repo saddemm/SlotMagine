@@ -72,7 +72,8 @@ app.use(function(err, req, res, next) {
 });
 
 
-Mailer.sendy('saddem.anene@esprit.tn', false);
+//Mailer.sendy('saddem.anene@esprit.tn', false);
+
 io.on('connection', function(socket){
 
   console.log('a user connected');
