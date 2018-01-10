@@ -130,7 +130,8 @@ $(function () {
 
 
     window.addEventListener("deviceorientation", function(event) {
-        if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled")){
+        // Le telephone est en rotation et le bouton n'est pas disable et l'utilisateur a remplit le formulaire
+        if (Math.round(event.beta)<0 && !$('#app-play').is(":disabled") && $('#fullView').is(":visible") ){
 
             var that = $('#app-play');
             startSchuffle(that);

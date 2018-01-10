@@ -20,7 +20,7 @@ router.route('/customers')
         if (err){
           res.send(err);
         }else{
-          //Mailer.sendy(req.body.email);
+
           res.json({ message: 'Customer created!', lastId : result._id});
         }
       });
@@ -65,12 +65,9 @@ addCustomer = function(newCust){
 
   // save the bear and check for errors
   customer.save(function(err,result) {
-    if (err){
+    if (err)
       console.log(err);
-    }else{
-      //Mailer.sendy(newCust.email);
-      console.log( 'Customer created! id: '+result._id);
-    }
+
   });
 },
 

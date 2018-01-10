@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-
+//Mailer.sendy('saddem.anene@esprit.tn', false);
 io.on('connection', function(socket){
 
   console.log('a user connected');
@@ -100,22 +100,24 @@ io.on('connection', function(socket){
 
     if (packetChecker.active1 == packetChecker.active2 && packetChecker.active2 == packetChecker.active3 && packetChecker.active3 == packetChecker.active1){
 
-      console.log('WIIIIIIIIIIIIIIN');
+      console.log('You Win');
+      Mailer.sendy(io.sockets.adapter.rooms[room].emailUser, true);
 
       io.to(packetChecker.room).emit('Result',true);
+      console.log(io.sockets.adapter.rooms[packetChecker.room].emailUser);
     }
   });
 
   socket.on('loose', function (room) {
 
+    console.log('You Loose');
+    Mailer.sendy(io.sockets.adapter.rooms[room].emailUser, false);
     io.to(room).emit('Result',false);
+    console.log(io.sockets.adapter.rooms[room].emailUser);
 
   });
 
   socket.on('fullCheck', function (fullObj) {
-
-    //temporarly email send test
-    //Mailer.sendy('saddem.anene@esprit.tn');
 
 
     // on voit si la room existe avant
@@ -124,6 +126,8 @@ io.on('connection', function(socket){
 
         api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
+
+            console.log('Test on unique device processing ...');
           //on test sur l'unique device
           if (!result) {
 
@@ -138,12 +142,14 @@ io.on('connection', function(socket){
 
       }else{
         //Already room
+        console.log('Already room exist');
         io.to(socket.id).emit('error',2);
       }
 
     } else {
 
       //dosen't exist
+      console.log('dosent exist');
       io.to(socket.id).emit('error', 1);
     }
 
@@ -156,11 +162,10 @@ io.on('connection', function(socket){
       if (io.sockets.adapter.rooms[roomObj.room].length< 2 ) {
 
 
-
-        //il peux être null au cas ce n'est pas la premiere fois qu'il accéder a la room
         socket.join(roomObj.room);
         api.addCustomer(roomObj.customer);
         io.to(roomObj.room).emit('joinRoom');
+        io.sockets.adapter.rooms[roomObj.room].emailUser = roomObj.customer.email;
 
 
       }else{

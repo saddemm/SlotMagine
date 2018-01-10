@@ -21,6 +21,9 @@ a {
   color: #c4c4c4;
 }
 
+label {
+  color : #f37321;
+}
 .site-wrapper {
   display: block;
   width: 100%;
