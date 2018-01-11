@@ -152,9 +152,8 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-        io.to(socket.id).emit('startGame');
 
-      /*api.canPlayToday(fullObj.uniqDevice, function (err, result) {
+      api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
 
             console.log('Test on unique device processing ...');
@@ -166,10 +165,10 @@ io.on('connection', function(socket){
 
           } else {
             io.to(socket.id).emit('notToday');
-            console.log('tu as déja joué aujourd hui mon chere')
+            console.log('tu as déja joué aujourd hui bb')
           }
 
-        });*/
+        });
 
       }else{
         //Already room
