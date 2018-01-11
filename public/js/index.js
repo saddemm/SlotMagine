@@ -171,11 +171,17 @@ $(document).ready(function(){
 
 
         switch (roomConfig.winnerType){
+            case 'veryeasy':
+                SchufleVeryEasy(randomBetween(0,5));
+                break;
             case 'easy':
                 SchufleEasy(randomBetween(0,5));
                 break;
             case 'normal':
-                startSchufle();
+                SchufleNormal(randomBetween(0,5));
+                break;
+            case 'hard':
+                SchufleHard();
                 break;
             case 'impossible':
                 SchufleLose(randomBetween(0,5));
@@ -228,7 +234,7 @@ $(document).ready(function(){
         });
     }
 
-    console.log(Math.floor(Math.random() * 6) + 1  );
+
     function onComplete(){
 
 
@@ -278,12 +284,50 @@ $(document).ready(function(){
 
     }
 
-    function SchufleEasy(tauxRand){
+    function SchufleVeryEasy(tauxRand){
 
 
         machine1.setRandomize(randomBetween(tauxRand,tauxRand+1));
         machine2.setRandomize(randomBetween(tauxRand,tauxRand+1));
         machine3.setRandomize(randomBetween(tauxRand,tauxRand+1));
+
+        startSchufle();
+    }
+
+
+    function SchufleEasy(tauxRand){
+
+        if (tauxRand==0){tauxRand=tauxRand+2}
+        if (tauxRand==1){tauxRand=tauxRand+1}
+
+        machine1.setRandomize(randomBetween(tauxRand-2,tauxRand));
+
+        machine2.setRandomize(randomBetween(tauxRand-2,tauxRand));
+
+        machine3.setRandomize(randomBetween(tauxRand-2,tauxRand));
+
+
+        startSchufle();
+    }
+
+     function SchufleNormal(tauxRand){
+
+
+            if (tauxRand==0){tauxRand=tauxRand+3}
+            if (tauxRand==1){tauxRand=tauxRand+2}
+            if (tauxRand==2){tauxRand=tauxRand+1}
+
+            machine1.setRandomize(randomBetween(tauxRand-3,tauxRand));
+
+            machine2.setRandomize(randomBetween(tauxRand-3,tauxRand));
+
+            machine3.setRandomize(randomBetween(tauxRand-3,tauxRand));
+
+
+            startSchufle();
+        }
+
+    function SchufleHard(){
 
         startSchufle();
     }
@@ -296,6 +340,7 @@ $(document).ready(function(){
 
         startSchufle();
     }
+
     function SchufleLose(tauxRand){
         if (tauxRand==0){tauxRand++}
         machine1.setRandomize(tauxRand+1);
@@ -306,7 +351,7 @@ $(document).ready(function(){
     }
 
     function checks(active1, active2, active3) {
-        console.log(active1 + " " + active2 + " " + active3);
+
 
         packetChecker = {active1: active1, active2: active2, active3: active3, room: rand}
 
@@ -317,6 +362,7 @@ $(document).ready(function(){
 
     function randomBetween(min,max)
     {
+        
         return Math.floor(Math.random()*(max-min+1)+min);
     }
 

@@ -101,13 +101,18 @@ io.on('connection', function(socket){
     api.winnerNumber(function(err,result){
       var winnerType;
 
-
-      if (result<11){
-        winnerType = 'easy';
+      if (result<5){
+        winnerType = 'veryeasy';
+        console.log("Mode very easy");
+      }else if(result>4 && result<12){
+        winnerType='easy';
         console.log("Mode easy");
-      }else if(result>10 && result<31){
+      }else if(result>11 && result<21){
         winnerType='normal';
         console.log("Mode normal");
+      }else if(result>20 && result<31){
+        winnerType='hard';
+        console.log("Mode hard");
       }else if (result>30){
         winnerType='impossible';
         console.log("Mode impossible");
@@ -156,7 +161,7 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-        //io.to(socket.id).emit('startGame');
+        io.to(socket.id).emit('startGame');
 
       api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
