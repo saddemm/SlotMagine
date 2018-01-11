@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-//Mailer.sendy('saddem.anene@esprit.tn', false);
+//Mailer.sendy('walid.kocht@gmail.com', true);
 
 io.on('connection', function(socket){
 
