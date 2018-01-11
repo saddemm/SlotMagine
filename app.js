@@ -94,6 +94,10 @@ io.on('connection', function(socket){
     //Au cas ou on veut laisser la game actif
     //io.sockets.adapter.rooms[room].activation=0;
 
+    //Ses deux lignes ne sont pas obligatoire, c'est seulement pour gagner le temp du callback
+    roomConfig = {essais : 3, winnerType : false};
+    io.sockets.adapter.rooms[room].roomConfig = roomConfig;
+
     api.winnerNumber(function(err,result){
       var winnerType;
 
@@ -152,8 +156,9 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
+        io.to(socket.id).emit('startGame');
 
-      api.canPlayToday(fullObj.uniqDevice, function (err, result) {
+     /* api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
 
             console.log('Test on unique device processing ...');
@@ -168,7 +173,7 @@ io.on('connection', function(socket){
             console.log('tu as déja joué aujourd hui bb')
           }
 
-        });
+        });*/
 
       }else{
         //Already room
@@ -215,7 +220,6 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[room].roomConfig.essais>0){
       
     console.log('playpressed Now !:');
-
 
       io.sockets.adapter.rooms[room].roomConfig.essais--;
 

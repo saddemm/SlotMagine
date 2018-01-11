@@ -2,9 +2,12 @@ var express = require('express');
 var router = express.Router();
 var Customer     = require('../models/customer');
 var Mailer     = require('../components/mailer');
-var moment = require('moment');
-var todayFormat = moment().format('YYYY-DD-MM');
+/*var moment = require('moment');
+var todayFormat = moment().format('YYYY-DD-MM');*/
 
+var moment = require('moment');
+ var tz = require('moment-timezone');
+ todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
 
 router.route('/customers')
 
