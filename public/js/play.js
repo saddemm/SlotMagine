@@ -107,6 +107,8 @@ $(function () {
 
     $("#starty").on('click', function(){
 
+        
+        $("#processingView").hide();
         $("#fullView").show();
 
         var firstname = $("#inputFirstname").val();

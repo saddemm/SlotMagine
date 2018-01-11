@@ -1,11 +1,11 @@
 var nodemailer = require('nodemailer');
 function mailTag(winner){
     if (winner){
-        mess = "Thank you for participating to our Digital Raffle, the luck was on your side and you have won a nice Acrelec Bluetooth Speaker." +
-            " To pick it up, please show this e-mail confirmation to an Acrelec Sales Representative who will give you your reward.";
+        mess = "Thank you for participating in Acrelec's Digital Raffle, congratulations on the winning our custom giveaway. " +
+            "To claim this prize, please present this e-mail confirmation to an Acrelec Sales Representative at Booth 2435. ";
     }else{
-        mess = "Thank you for participating to our Digital Raffle but unfortunately lady luck didn't strike today."+
-            "Don't worry, you will be able to retry your luck tomorrow on our booth !";
+        mess = "Thank you for participating in Acrelec's Digital Raffle, we are sorry that you were not selected as one of today's winners."+
+            "Please visit the Acrelec booth, #2435, tomorrow for another chance to win a custom giveaway !";
     }
 return "" +
     "<div>\
@@ -27,11 +27,10 @@ return "" +
 <table border='0' cellpadding='0' cellspacing='0' style='width: 100%;'>\
         <tbody><tr>\
         <td>\
-        <p>Dear guest,</p>\
+        <p>Hello Future Customer!</p>\
     <p>Thanks for visiting our booth and discovered our phygital solutions during the NRF 2018.</p>\
     <p>"+mess+"</p>\
-    <p>All the Acrelec team wish you a very happy and healthy new year.</p>\
-    <p>We are looking to work with you soon ?</p>\
+    <p>We are looking forward to seeing and working with you soon ☺</p>\
     <!--[if mso]>\
 <v:roundrect xmlns:v='urn:schemas-microsoft-com:vml' xmlns:w='urn:schemas-microsoft-com:office:word' href='http://litmus.com' style='height:36px;v-text-anchor:middle;width:150px;' arcsize='5%' strokecolor='#EB7035' fillcolor='#EB7035'>\
         <w:anchorlock/>\
@@ -59,11 +58,11 @@ return "" +
     </div>\
     <div style='text-align: center; font-size: 12px; color: #a09bb9; margin-top: 20px'>\
         <p>\
-        Acrelec Inc., 2 rue Louis Broglie, 77400 Saint-Thibault des Vignes, FRANCE\
+        Acrelec America., 5490 Campbells Run Road, Pittsburgh, PA 15205,\
     <br />\
-    more informations : <a href='javascript: void(0);' style='color: #a09bb9; text-decoration: underline;'>info@acrelec.com</a>\
+    877.334.9737\
     <br />\
-    Phone: +33 (0)1 72 03 24 10\
+    www.acrelec.com\
 </p>\
     </div>\
     </div>\
@@ -89,7 +88,7 @@ module.exports = {
     from: '"Acrelec" <marketing@acrelec.com>', // sender address
 	//req.body.email
     to: emailParam, // list of receivers
-    subject: 'Acrelec/NRF 2018 : Thank you for participating!', // Subject line
+    subject: 'Acrelec/NRF 2018 : Congratulations from Acrelec!!', // Subject line
     html: mailHtml //, // plaintext body
     // html: '<b>Hello world ?</b>' // You can choose to send an HTML body instead
 };

@@ -57,7 +57,7 @@ $(document).ready(function(){
             if (countdown < 2){
                 clearInterval(intId);
                 // call function to handle timeout :: loose
-                reloader();
+                loser();
             }
 
             countdown = --countdown <= 0 ? settings.countdown : countdown;
@@ -147,18 +147,16 @@ $(document).ready(function(){
 
     var socket = io();
 
-    var reloader = function reloader(){
-        socket.emit('loose', rand);
-        window.location.reload();
-    }
+
 
 
 
     socket.on('Result', function(what){
 
-        what ? window.location.reload():null;
+        what ? winner():null;
 
     });
+
 
 
 
@@ -169,6 +167,7 @@ $(document).ready(function(){
 
         $("#essais").text(gessais);
 
+        
 
         switch (roomConfig.winnerType){
             case 'veryeasy':
@@ -265,7 +264,7 @@ $(document).ready(function(){
         if (gessais<=0){
             setTimeout(function(){
 
-                reloader();
+                loser();
 
             },1500);
         }
@@ -364,6 +363,16 @@ $(document).ready(function(){
     {
         
         return Math.floor(Math.random()*(max-min+1)+min);
+    }
+
+    var loser = function loser(){
+        socket.emit('loose', rand);
+
+        window.location = "/fulllose";
+    }
+
+    var winner = function winner(){
+        window.location = "/fullwin";
     }
 
 

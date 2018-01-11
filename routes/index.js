@@ -32,5 +32,13 @@ router.get('/tomorrow', function(req, res, next) {
   res.render('tomorrow');
 });
 
+router.get('/fullwin', function(req, res, next) {
+  res.render('full_win');
+});
+
+router.get('/fulllose', function(req, res, next) {
+  res.render('full_lose');
+});
+
 
 module.exports = router;
