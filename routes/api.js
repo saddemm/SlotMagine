@@ -123,7 +123,24 @@ addCustomer = function(newCust,callback){
         });
 
 
+    },
+
+    winnerNumber = function(callback){
+
+
+
+        Customer.find({"tester_date": {"$eq": todayFormat}, "winner" : {"$eq" : true}}, function(err, customers) {
+
+            if (err){
+                console.log(err);
+            }else{
+                callback(null,customers.length);
+            }
+
+        });
+
+
     }
 
 
-module.exports = { router : router, addCustomer : addCustomer , canPlayToday : canPlayToday, isWinner : isWinner}
+module.exports = { router : router, addCustomer : addCustomer , canPlayToday : canPlayToday, isWinner : isWinner, winnerNumber : winnerNumber}

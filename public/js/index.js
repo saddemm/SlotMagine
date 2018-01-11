@@ -162,15 +162,28 @@ $(document).ready(function(){
 
 
 
-    socket.on('playPressed', function(essais){
+    socket.on('playPressed', function(roomConfig){
 
         //use gessais to global to hundle the lose
-        gessais = essais;
+        gessais = roomConfig.essais;
 
         $("#essais").text(gessais);
 
 
-        startSchufle();
+        switch (roomConfig.winnerType){
+            case 'easy':
+                SchufleEasy(randomBetween(0,5));
+                break;
+            case 'normal':
+                startSchufle();
+                break;
+            case 'impossible':
+                SchufleLose(randomBetween(0,5));
+                break;
+            default:
+                startSchufle();
+
+        }
 
 
     });
@@ -215,6 +228,7 @@ $(document).ready(function(){
         });
     }
 
+    console.log(Math.floor(Math.random() * 6) + 1  );
     function onComplete(){
 
 
@@ -262,8 +276,33 @@ $(document).ready(function(){
 
         machine3.shuffle(5, onComplete);
 
+    }
+
+    function SchufleEasy(tauxRand){
 
 
+        machine1.setRandomize(randomBetween(tauxRand,tauxRand+1));
+        machine2.setRandomize(randomBetween(tauxRand,tauxRand+1));
+        machine3.setRandomize(randomBetween(tauxRand,tauxRand+1));
+
+        startSchufle();
+    }
+
+
+    function SchufleWin(tauxRand){
+        machine1.setRandomize(tauxRand);
+        machine2.setRandomize(tauxRand);
+        machine3.setRandomize(tauxRand);
+
+        startSchufle();
+    }
+    function SchufleLose(tauxRand){
+        if (tauxRand==0){tauxRand++}
+        machine1.setRandomize(tauxRand+1);
+        machine2.setRandomize(tauxRand);
+        machine3.setRandomize(tauxRand-1);
+
+        startSchufle();
     }
 
     function checks(active1, active2, active3) {
@@ -276,6 +315,10 @@ $(document).ready(function(){
     }
 
 
+    function randomBetween(min,max)
+    {
+        return Math.floor(Math.random()*(max-min+1)+min);
+    }
 
 
 });

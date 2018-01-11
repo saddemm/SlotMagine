@@ -93,11 +93,33 @@ io.on('connection', function(socket){
 
     //Au cas ou on veut laisser la game actif
     //io.sockets.adapter.rooms[room].activation=0;
-    io.sockets.adapter.rooms[room].essais = 3;
+
+    api.winnerNumber(function(err,result){
+      var winnerType;
+
+
+      if (result<11){
+        winnerType = 'easy';
+        console.log("Mode easy");
+      }else if(result>10 && result<31){
+        winnerType='normal';
+        console.log("Mode normal");
+      }else if (result>30){
+        winnerType='impossible';
+        console.log("Mode impossible");
+      }
+
+      roomConfig = {essais : 3, winnerType : winnerType};
+      io.sockets.adapter.rooms[room].roomConfig = roomConfig;
+
+      console.log("Number of winners today: "+result);
+    });
+
     console.log(io.sockets.adapter.rooms[room]);
   });
 
   socket.on('checks', function (packetChecker) {
+
 
     if (packetChecker.active1 == packetChecker.active2 && packetChecker.active2 == packetChecker.active3 && packetChecker.active3 == packetChecker.active1){
 
@@ -130,7 +152,9 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-        api.canPlayToday(fullObj.uniqDevice, function (err, result) {
+        io.to(socket.id).emit('startGame');
+
+      /*api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
 
             console.log('Test on unique device processing ...');
@@ -142,10 +166,10 @@ io.on('connection', function(socket){
 
           } else {
             io.to(socket.id).emit('notToday');
-            console.log('tu as déja joué mon chere')
+            console.log('tu as déja joué aujourd hui mon chere')
           }
 
-        });
+        });*/
 
       }else{
         //Already room
@@ -189,15 +213,14 @@ io.on('connection', function(socket){
 
   socket.on('playPressed', function(room){
 
-    if (io.sockets.adapter.rooms[room].essais>0){
+    if (io.sockets.adapter.rooms[room].roomConfig.essais>0){
       
     console.log('playpressed Now !:');
 
 
-      io.sockets.adapter.rooms[room].essais--;
-      var essais = io.sockets.adapter.rooms[room].essais;
+      io.sockets.adapter.rooms[room].roomConfig.essais--;
 
-    io.to(room).emit('playPressed',essais);
+    io.to(room).emit('playPressed',io.sockets.adapter.rooms[room].roomConfig);
       
     }
 

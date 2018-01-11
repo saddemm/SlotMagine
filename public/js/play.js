@@ -10,8 +10,6 @@ $(function () {
     var fingerprint = client.getFingerprint();
 
 
-
-
     gessais = null;
 
     uniqDevice = fingerprint;
@@ -78,8 +76,8 @@ $(function () {
 
 
 
-    socket.on('playPressed', function(essais){
-        gessais = essais;
+    socket.on('playPressed', function(roomConfig){
+        gessais = roomConfig.essais;
         $("#essais").text(gessais);
 
 
