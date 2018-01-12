@@ -38,7 +38,7 @@ return "" +
     </v:roundrect>\
     <![endif]-->\
     <center><a href='http://www.acrelec.com' style='display: inline-block;padding: 15px;margin: 20px 0;font-size: 15px;color: #fff;background: #f37321;border-radius: 5px;max-width: 80%;'>\
-        <img src='https://i.imgur.com/NMQIny8.jpg' style='max-width:100%'/>\
+        <img src='https://i.imgur.com/QeqSXk8.jpg' style='max-width:100%'/>\
         </a></center>\
         <p>About Acrelec :</p>\
     <p>A decision makes sense only if it serves our clients</p>\
@@ -71,21 +71,26 @@ return "" +
 }
 module.exports = {
   sendy: function (emailParam,winner) {
+      
+
 
 			 // Not the movie transporter!
     var transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: 'exchange.acrelec.com',
+        port: 587,
+        secure:false,
         auth: {
-            user: 'saddem.anane@gmail.com', // Your email id
-            pass: 'Sadsad113' // Your password
+            user: 'aksor\\digital.raffle',
+            pass: 'Acre_2018!'
         }
     });
+
 
 
 	
 	var mailHtml = mailTag(winner);
 	var mailOptions = {
-    from: '"Acrelec" <marketing@acrelec.com>', // sender address
+    from: '"Acrelec" <digital.raffle@acrelec.com>', // sender address
 	//req.body.email
     to: emailParam, // list of receivers
     subject: 'Acrelec/NRF 2018 : Congratulations from Acrelec!!', // Subject line

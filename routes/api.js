@@ -7,7 +7,7 @@ var todayFormat = moment().format('YYYY-DD-MM');*/
 
 var moment = require('moment');
  var tz = require('moment-timezone');
- todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
+
 
 router.route('/customers')
 
@@ -45,6 +45,7 @@ router.route('/customers')
 router.route('/testy')
     .get(function(req, res, next) {
 
+        todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
         Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
             if (err)
                 res.send(err);
@@ -57,6 +58,7 @@ router.route('/testy')
 router.route('/testy2')
     .get(function(req, res, next) {
 
+        todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
         Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : "848253505"}}, function(err, customers) {
             if (err)
                 res.send(err);
@@ -67,6 +69,7 @@ router.route('/testy2')
 
     });
 addCustomer = function(newCust,callback){
+    todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
   var customer = new Customer();
 
   customer.firstname = newCust.firstname;
@@ -108,6 +111,7 @@ addCustomer = function(newCust,callback){
     canPlayToday = function(uniq, callback){
 
 
+        todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
 
          Customer.find({"tester_date": {"$eq": todayFormat}, "uniq" : {"$eq" : uniq}}, function(err, customers) {
 
@@ -130,7 +134,7 @@ addCustomer = function(newCust,callback){
 
     winnerNumber = function(callback){
 
-
+        todayFormat = moment().tz('America/New_York').format('YYYY-DD-MM');
 
         Customer.find({"tester_date": {"$eq": todayFormat}, "winner" : {"$eq" : true}}, function(err, customers) {
 

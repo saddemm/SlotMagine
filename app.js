@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-//Mailer.sendy('walid.kocht@gmail.com', true);
+//Mailer.sendy('saddem.anene@esprit.tn', true);
 
 io.on('connection', function(socket){
 
@@ -161,7 +161,7 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-        
+
 
       api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
