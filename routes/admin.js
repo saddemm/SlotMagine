@@ -25,10 +25,10 @@ module.exports = function(app,passport) {
         function(req, username, password, done) {
 
 
-                if (username!='admin@admin.com') {
+                if (username!='admin@acrelec.com') {
                     return done(null, false, req.flash('loginMessage', 'Incorrect login'));
                 }
-                if (password!='admin') {
+                if (password!='Acrelec2018') {
                     return done(null, false, req.flash('loginMessage', 'Incorrect password'));
                 }
 
@@ -52,7 +52,7 @@ module.exports = function(app,passport) {
         failureFlash: true }));
 
     /* GET users listing. */
-    app.get('/admin', /*isLoggedIn,*/ function (req, res, next) {
+    app.get('/admin', isLoggedIn, function (req, res, next) {
 
         Customer.find({}).sort('-created_at').exec(function (err, customers) {
             if (err)

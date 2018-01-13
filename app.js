@@ -161,11 +161,9 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
-        socket.join(fullObj.rand);
 
-        io.to(fullObj.rand).emit('fillForm');
 
-      /*api.canPlayToday(fullObj.uniqDevice, function (err, result) {
+      api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
 
             console.log('Test on unique device processing ...');
@@ -183,7 +181,7 @@ io.on('connection', function(socket){
             console.log('tu as déja joué aujourd hui bb')
           }
 
-        });*/
+        });
 
       }else{
         //Already room
