@@ -27,7 +27,7 @@ return "" +
 <table border='0' cellpadding='0' cellspacing='0' style='width: 100%;'>\
         <tbody><tr>\
         <td>\
-        <p>Hello Future Customer!</p>\
+        <p>Hello Future Partner</p>\
     <p>Thanks for visiting our booth and discovered our phygital solutions during the NRF 2018.</p>\
     <p>"+mess+"</p>\
     <p>We are looking forward to seeing and working with you soon ☺</p>\
