@@ -43,10 +43,11 @@ $(document).ready(function(){
         countdown : 60 // seconds
     };
 
-    var $text_countdown  = $("span#timer-count");
 
 
-    var timerCountDown = function () {
+
+    var timerCountDownBingo = function () {
+        var text_countdown  = $("span#timer-count");
         var countdownNumberEl = document.getElementById('countdown-number');
         var countdown = settings.countdown;
 
@@ -64,7 +65,32 @@ $(document).ready(function(){
 
             var countdownT = countdown < 10 ? "0"+countdown : countdown;
             countdownNumberEl.textContent = countdownT;
-            $text_countdown.text(countdownT);
+            text_countdown.text(countdownT);
+
+
+        }, 1000);
+    };
+
+    var timerCountDownForm = function () {
+        var countdownNumberEl = document.getElementById('countdown-number-2');
+        var countdown = settings.countdown;
+
+        countdownNumberEl.textContent = countdown;
+
+        var intId = setInterval(function() {
+
+            if (countdown < 2){
+                clearInterval(intId);
+            if ($('.form-page').is(":visible")) {
+
+                window.location.reload();
+            }
+            }
+
+            countdown = --countdown <= 0 ? settings.countdown : countdown;
+
+            var countdownT = countdown < 10 ? "0"+countdown : countdown;
+            countdownNumberEl.textContent = countdownT;
 
 
         }, 1000);
@@ -160,6 +186,7 @@ $(document).ready(function(){
 
 
 
+
     socket.on('playPressed', function(roomConfig){
 
         //use gessais to global to hundle the lose
@@ -196,18 +223,35 @@ $(document).ready(function(){
 
     socket.emit('createRoom',rand);
 
-
-
-
-    socket.on('joinRoom', function(){
+    socket.on('fillForm', function(roomConfig){
 
         $mainPage = $("section.main-page");
         $gamePage = $("section.game-page");
 
+        $gameFill = $("section.form-page");
+
         $mainPage.addClass("hide");
+        $gameFill.removeClass("hide");
+
+        timerCountDownForm();
+
+
+    });
+
+
+    socket.on('startBingo', function(){
+
+        $mainPage = $("section.main-page");
+        $gamePage = $("section.game-page");
+        $gameFill = $("section.form-page");
+
+
+        $mainPage.addClass("hide");
+        $gameFill.addClass("hide");
         $gamePage.removeClass("hide");
 
-        timerCountDown();
+
+        timerCountDownBingo();
 
 
         initMachines();

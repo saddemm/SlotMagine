@@ -58,7 +58,6 @@ body {
 
 .block-two.rotate img.img-port {
     display: block;
-    filter: brightness(0) invert(1);
 }
 
 .block-two.rotate i.img-land {
@@ -69,9 +68,9 @@ body {
     color: #FF9800;
     font-size: 4em;
     margin : 50px auto;
-    transition : all 1s;
-}
 
+}
+/*
 .block-two.rotate img, .block-two.rotate i {
     -webkit-animation: bummer 0.5s;
     animation: bummer 0.5s;
@@ -79,7 +78,7 @@ body {
     transform: scale(0,0);
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
-}
+}*/
 
 .block-three span {
     text-shadow: -1px -1px 0 rgba(255,255,255,0.3), 1px 1px 0 rgba(0,0,0,0.8);

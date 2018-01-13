@@ -161,8 +161,9 @@ io.on('connection', function(socket){
     if (io.sockets.adapter.rooms[fullObj.rand]) {
       if (io.sockets.adapter.rooms[fullObj.rand].length< 2 ) {
 
+        socket.join(fullObj.rand);
 
-        io.to(socket.id).emit('startGame');
+        io.to(fullObj.rand).emit('fillForm');
 
       /*api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
@@ -171,8 +172,11 @@ io.on('connection', function(socket){
           //on test sur l'unique device
           if (result) {
 
-            io.to(socket.id).emit('startGame');
-            console.log('startGame');
+            socket.join(fullObj.rand);
+
+            io.to(fullObj.rand).emit('fillForm');
+
+            console.log('fillForm');
 
           } else {
             io.to(socket.id).emit('notToday');
@@ -196,23 +200,17 @@ io.on('connection', function(socket){
 
   });
   
-  socket.on('joinRoom', function (roomObj) {
+  socket.on('startBingo', function (roomObj) {
 
     if (io.sockets.adapter.rooms[roomObj.room]){
 
-      if (io.sockets.adapter.rooms[roomObj.room].length< 2 ) {
-
-        socket.join(roomObj.room);
-        io.to(roomObj.room).emit('joinRoom');
+        io.to(roomObj.room).emit('startBingo');
 
         api.addCustomer(roomObj.customer, function(err,result){
           io.sockets.adapter.rooms[roomObj.room].customer=result;
         });
 
 
-      }else{
-        io.to(socket.id).emit('error',2);
-      }
     }else{
       console.log('dosent exist!');
       io.to(socket.id).emit('error',1);

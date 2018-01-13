@@ -47,7 +47,7 @@ $(function () {
     });
     
     
-    socket.on('startGame', function(){
+    socket.on('fillForm', function(){
             openModal();
     });
 
@@ -123,7 +123,7 @@ $(function () {
         roomObj = {room : rand, customer : customer };
 
 
-        socket.emit("joinRoom",roomObj);
+        socket.emit("startBingo",roomObj);
 
 
     });
