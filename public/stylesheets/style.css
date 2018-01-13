@@ -360,7 +360,47 @@ a {
   -webkit-box-shadow: 0 10px 5px rgba(0, 0, 0, 0.7);
 }
 
+/*=============================================================*/
 
+.winner-page {
+  display: block;
+  position: relative;
+  width : 100%;
+  height: auto;
+
+  display: table;
+  width: 100%;
+  min-height: 100vh;
+}
+.winner-page p {
+  text-transform: uppercase;
+  font-weight: 100;
+  letter-spacing: 1px;
+  font-size: 3vw;
+  text-align: center;
+  text-shadow: 0px 3px 8px #2a2a2a;
+}
+
+.winner-page .big-text {
+  font-size: 3em;
+}
+
+.winner-page .medium-text {
+  margin-top : 5vh;
+  font-size: 2em;
+}
+
+.winner-page .stage {
+  font: 6em 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
+  text-shadow: 4px 5px #333;
+  margin : 1em auto;
+}
+
+
+
+
+
+/*=============================================================*/
 /*=============================================================*/
 
 @media (min-width: 992px) {
