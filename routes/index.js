@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' , rand : rand = Math.random().toString(10).substring(7)});
+  res.render('index', { title: 'Express' , rand : (Math.random()*Math.pow(36,4)<<0).toString(36).slice(-4)});
 });
 
 router.get('/win', function(req, res, next) {

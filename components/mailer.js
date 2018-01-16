@@ -1,8 +1,8 @@
 var nodemailer = require('nodemailer');
 function mailTag(winner){
     if (winner){
-        mess = "Thank you for participating in Acrelec's Digital Raffle, congratulations on the winning our custom giveaway. " +
-            "To claim this prize, please present this e-mail confirmation to an Acrelec Sales Representative at Booth 2435. ";
+        mess = "Thank you for participating in Acrelec's Digital Raffle, Congratulations, you have been selected as one of today's winners.. " +
+            "To claim this prize, please present this email confirmation to an Acrelec Sales Representative in booth #2435. ";
     }else{
         mess = "Thank you for participating in Acrelec's Digital Raffle, we are sorry that you were not selected as one of today's winners."+
             "Please visit the Acrelec booth, #2435, tomorrow for another chance to win a custom giveaway !";
@@ -37,7 +37,7 @@ return "" +
     <center style='color:#ffffff;font-family:Helvetica, Arial,sans-serif;font-size:16px;'>I am a button &rarr;</center>\
     </v:roundrect>\
     <![endif]-->\
-    <center><a href='http://www.acrelec.com' style='display: inline-block;padding: 15px;margin: 20px 0;font-size: 15px;color: #fff;background: #f37321;border-radius: 5px;max-width: 80%;'>\
+    <center><a href='http://www.acrelec.com' style='display: inline-block;padding: 5px;margin: 10px 0;font-size: 15px;color: #fff;background: #f37321;border-radius: 5px;max-width: 50%;'>\
         <img src='https://i.imgur.com/QeqSXk8.jpg' style='max-width:100%'/>\
         </a></center>\
         <p>About Acrelec :</p>\
@@ -49,7 +49,6 @@ return "" +
     <p>Acrelec pioneered digital kiosks in quick service restaurants and gained prominence by developing digital commerce platforms for the world's largest retail brands.   </p>\
     <p>Acrelec has over 20,000 installations in 50 countries and over 700 employees worldwide.   </p>\
     <p>Enjoy the NRF 2018  </p>\
-    <p>Thanks   </p>\
     <p>The Acrelec Team   </p>\
     </td>\
     </tr>\
