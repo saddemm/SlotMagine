@@ -5,7 +5,7 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/:rand', function(req, res, next) {
 
-  var rand = '';
+  var rand = req.params.rand;
   var ip = req.headers['x-forwarded-for'] ||
       req.connection.remoteAddress ||
       req.socket.remoteAddress ||
@@ -14,12 +14,9 @@ router.get('/:rand', function(req, res, next) {
 
   var cutIp = ip.substring(0, 13);
 
-  console.log('XXXXXXXXXX : ' +cutIp);
   //si c'est google qui test on le deny
   if (cutIp == '::ffff:66.249'){
     rand = 'randomNoExist';
-  }else{
-    rand = req.params.rand;
   }
 
 
