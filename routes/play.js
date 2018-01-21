@@ -14,10 +14,9 @@ router.get('/:rand', function(req, res, next) {
 
   var cutIp = ip.substring(0, 13);
 
+  //si c'est google qui test on le deny
   if (cutIp == '::ffff:66.249'){
-    console.log('XXXX  Its google XXXXXXX');
-  }else{
-    console.log('XXXXXXXXX c bon XXXXXXXXXx');
+    rand = 'randomNoExist';
   }
 
 
