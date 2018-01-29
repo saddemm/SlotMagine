@@ -163,6 +163,11 @@ io.on('connection', function(socket){
 
 
 
+        socket.join(fullObj.rand);
+
+        io.to(fullObj.rand).emit('fillForm');
+
+        /*
       api.canPlayToday(fullObj.uniqDevice, function (err, result) {
 
 
@@ -181,7 +186,7 @@ io.on('connection', function(socket){
             console.log('tu as déja joué aujourd hui bb')
           }
 
-        });
+        });*/
 
       }else{
         //Already room
