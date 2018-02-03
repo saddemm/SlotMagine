@@ -72,7 +72,7 @@ app.use(function(err, req, res, next) {
 });
 
 
-//Mailer.sendy('saddem.anene@esprit.tn', true);
+Mailer.sendy('saddem.anene@esprit.tn', true);
 
 io.on('connection', function(socket){
 

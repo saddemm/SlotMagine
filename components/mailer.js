@@ -79,7 +79,7 @@ module.exports = {
         port: 587,
         secure:false,
         auth: {
-            user: 'aksor\\digital.raffle',
+            user: 'digital.raffle',
             pass: 'Acre_2018!'
         }
     });
