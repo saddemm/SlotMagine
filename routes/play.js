@@ -18,7 +18,7 @@ router.get('/:rand', function(req, res, next) {
     console.log(cutIp);
     console.log("XXXXXX ip XXXXXXXXXXXX");
 
-  //si c'est google qui test on le deny
+  //On deny la requete de google pour le test shortcode
   if (cutIp == '::ffff:66.249' || cutIp== 'fff:72.14.'){
     rand = 'randomNoExist';
   }
