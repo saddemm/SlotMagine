@@ -22,11 +22,9 @@ $(function () {
 
     function isValidForm(){
 
-        var firstname = $("#inputFirstname").val();
-        var lastname = $("#inputLastname").val();
         var email = $("#inputEmail").val();
 
-        if (firstname!='' && lastname!='' && isValidEmailAddress(email)){
+        if (isValidEmailAddress(email)){
             return true;
         }else{
             return false;
@@ -111,15 +109,11 @@ $(function () {
         $("#processingView").hide();
         $("#fullView").show();
 
-        var firstname = $("#inputFirstname").val();
-        var lastname = $("#inputLastname").val();
-        var company = $("#inputCompany").val();
         var email = $("#inputEmail").val();
-        var telephone = $("#inputTel").val();
 
 
 
-        customer = {firstname : firstname, lastname : lastname, company: company, email : email, telephone : telephone, uniq : uniqDevice};
+        customer = {email : email, uniq : uniqDevice};
         roomObj = {room : rand, customer : customer };
 
 

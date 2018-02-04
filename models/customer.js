@@ -6,9 +6,10 @@ var mongoose     = require('mongoose');
 var Schema       = mongoose.Schema;
 
 var CustomerSchema = new Schema({
-    "firstname" : { type : String , maxlength: 30 , required : true},
+    /*"firstname" : { type : String , maxlength: 30 , required : true},
     "lastname" : { type : String , maxlength: 30 , required : true},
     "company" : { type : String , maxlength: 30},
+    "telephone" : { type : String , maxlength: 50},*/
     "email" : { type : String , required : true, maxlength: 70,
         validate: {
             validator: function(v) {
@@ -16,7 +17,7 @@ var CustomerSchema = new Schema({
             },
             message: '{VALUE} is not a valid email!'
         }},
-    "telephone" : { type : String , maxlength: 50},
+    
     "winner" : { type : Boolean },
     "created_at": {type: Date, default: Date.now},
     "tester_date": {type: String},
