@@ -13,6 +13,9 @@ router.get('/:rand', function(req, res, next) {
 
 
   var cutIp = ip.substring(0, 13);
+    console.log("XXXXXX ip XXXXXXXXXXXX");
+    console.log(cutIp);
+    console.log("XXXXXX ip XXXXXXXXXXXX");
 
   //si c'est google qui test on le deny
   if (cutIp == '::ffff:66.249'){
