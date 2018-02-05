@@ -62,7 +62,7 @@ $(function () {
 
 
 
-    $( ".form-control" ).bind('keyup change', function() {
+    $( ".form-control" ).bind('keyup change autocompleteselect', function() {
         
         if (isValidForm()) {
             $("#starty").removeAttr("disabled");
