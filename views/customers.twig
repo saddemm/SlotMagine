@@ -68,10 +68,10 @@
     <!--  -->
     <section class="panel">
       <div class="panel-heading">
-        <h4>
-          Entry list
-
-        </h4>
+        <h2>
+          <button id="clearData" class="pull-right btn btn-danger">Clear customers data</button>
+          Clear list
+        </h2>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -126,7 +126,7 @@
   <script>
     $(function(){
 
-      $('#participantsTable').DataTable({
+     var table = $('#participantsTable').DataTable({
         responsive: true,
         "aaSorting": [],
         dom: 'Bfrtip',
@@ -134,6 +134,34 @@
           'copy', 'csv', 'excel', 'pdf', 'print'
         ]
       });
+
+
+      if (table.rows().count() == 0) {
+        $("#clearData").attr("disabled", "disabled");
+      }
+    $( "#clearData" ).click(function() {
+
+      if (table.rows().count() > 0){
+      if (confirm("You will remove all customers data, are you sure ?")) {
+        $.ajax({
+          url: '/api/customers',
+          type: 'DELETE',
+          success: function (result) {
+            table.clear().draw();
+            $("#clearData").attr("disabled", "disabled");
+            alert(result.message);
+
+            // Do something with the result
+          }
+        });
+      }
+      }else{
+        alert('Customers data already cleared');
+      }
+
+
+    });
+
 
     });
   </script>

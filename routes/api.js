@@ -30,6 +30,7 @@ router.route('/customers')
 
     })
 
+
       .get(function(req, res, next) {
 
         Customer.find(function(err, customers) {
@@ -40,6 +41,13 @@ router.route('/customers')
           res.send(JSON.stringify(customers, null, 1)); //\t or \n
         });
 
+}).delete(function(req, res) {
+    Customer.remove({}, function(err, client) {
+        if (err)
+            res.send(err);
+
+        res.json({ message: 'Successfully cleaned customers' });
+    });
 });
 
 router.route('/testy')
