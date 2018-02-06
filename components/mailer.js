@@ -2,11 +2,11 @@ var nodemailer = require('nodemailer');
 function mailTag(winner){
     if (winner){
         mess = "Thank you for participating in Acrelec's Digital Raffle, Congratulations, you have been selected as one of today's winners. " +
-            "To claim this prize, please present this email confirmation to an Acrelec Sales Representative in booth #2435. ";
+            "To claim this prize, please present this email confirmation to an Acrelec Sales Representative in booth 14-M200. ";
         subj = "Congratulations from Acrelec !";
     }else{
         mess = "Thank you for participating in Acrelec's Digital Raffle, we are sorry that you were not selected as one of today's winners. "+
-            "Please visit the Acrelec booth, #2435, tomorrow for another chance to win a custom giveaway ! ";
+            "Please visit the Acrelec booth, 14-M200, tomorrow for another chance to win a custom giveaway ! ";
         subj = "Greetings from Acrelec";
     }
 return "" +
