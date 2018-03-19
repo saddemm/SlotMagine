@@ -4,35 +4,36 @@
 
 $(document).ready(function() {
 
-     rootUrl = window.location.href+"play/";
-     rand = $('#rand').data('rand');
-     link2 = rootUrl+rand;
+    rootUrl = window.location.href+"play/";
+    rand = $('#rand').data('rand');
+    link2 = rootUrl+rand;
     if (rootUrl != 'http://localhost:3000/play/' && rootUrl != 'http://192.168.1.60:3000/play/'){
         rootUrl = 'http://vps163824.vps.ovh.ca:3000/play/';
         link2 = rootUrl+rand;
 
 
-    // getting the shortener url from google
-    $.ajax({
-        url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDAoD3F7pUxYDUr1d4_gIDEkoxdst8Qbps',
-        type: 'POST',
-        contentType: 'application/json; charset=utf-8',
-        data: '{ longUrl: "' + link2 +'"}',
-        dataType: 'json',
-        success: function(response) {
-            shortenerUrl = response.id; // Evaluate the J-Son response object.
+        // getting the shortener url from google
+        $.ajax({
+            url: 'https://www.googleapis.com/urlshortener/v1/url?shortUrl=http://goo.gl/fbsS&key=AIzaSyDAoD3F7pUxYDUr1d4_gIDEkoxdst8Qbps',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: '{ longUrl: "' + link2 +'"}',
+            dataType: 'json',
+            success: function(response) {
+                shortenerUrl = response.id; // Evaluate the J-Son response object.
 
-            $('#qr-code').qrcode(shortenerUrl);
+                $('#qr-code').qrcode(shortenerUrl);
 
+                $('#qr-link-2').html("<a> </a>");
+                //$('#qr-link-2').html("<a>"+shortenerUrl+"</a>");
 
-            $('#qr-link-2').html("<a>"+shortenerUrl+"</a>");
-
-        }
-    });
+            }
+        });
 
     }else{
         $('#qr-code').qrcode(link2);
-         $('#qr-link-2').html("<a>"+link2+"</a>");
+        //$('#qr-link-2').html("<a>"+link2+"</a>");
+        $('#qr-link-2').html("<a>https://goo.gl/h4C5H1 </a>");
     }
 
 });
@@ -81,10 +82,10 @@ $(document).ready(function(){
 
             if (countdown < 2){
                 clearInterval(intId);
-            if ($('.form-page').is(":visible")) {
+                if ($('.form-page').is(":visible")) {
 
-                window.location.reload();
-            }
+                    window.location.reload();
+                }
             }
 
             countdown = --countdown <= 0 ? settings.countdown : countdown;
@@ -141,9 +142,7 @@ $(document).ready(function(){
             var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
             var color2 = "rgb("+r2+","+g2+","+b2+")";
 
-            $('body').css({
-                background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
-                background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+
 
             step += gradientSpeed;
             if ( step >= 1 )  {
@@ -194,7 +193,7 @@ $(document).ready(function(){
 
         $("#essais").text(gessais);
 
-        
+
 
         switch (roomConfig.winnerType){
             case 'veryeasy':
@@ -353,22 +352,22 @@ $(document).ready(function(){
         startSchufle();
     }
 
-     function SchufleNormal(tauxRand){
+    function SchufleNormal(tauxRand){
 
 
-            if (tauxRand==0){tauxRand=tauxRand+3}
-            if (tauxRand==1){tauxRand=tauxRand+2}
-            if (tauxRand==2){tauxRand=tauxRand+1}
+        if (tauxRand==0){tauxRand=tauxRand+3}
+        if (tauxRand==1){tauxRand=tauxRand+2}
+        if (tauxRand==2){tauxRand=tauxRand+1}
 
-            machine1.setRandomize(randomBetween(tauxRand-3,tauxRand));
+        machine1.setRandomize(randomBetween(tauxRand-3,tauxRand));
 
-            machine2.setRandomize(randomBetween(tauxRand-3,tauxRand));
+        machine2.setRandomize(randomBetween(tauxRand-3,tauxRand));
 
-            machine3.setRandomize(randomBetween(tauxRand-3,tauxRand));
+        machine3.setRandomize(randomBetween(tauxRand-3,tauxRand));
 
 
-            startSchufle();
-        }
+        startSchufle();
+    }
 
     function SchufleHard(){
 
@@ -405,7 +404,7 @@ $(document).ready(function(){
 
     function randomBetween(min,max)
     {
-        
+
         return Math.floor(Math.random()*(max-min+1)+min);
     }
 
