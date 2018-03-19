@@ -12,6 +12,7 @@ body {
     /*background: radial-gradient(circle, #f37321, #f37321, #f37321, #f37321) no-repeat;*/
     background: #1a2434;
     overflow: hidden;
+    font-family:  'Lato', sans-serif !important;
 }
 
 .site-wrapper {
@@ -243,7 +244,6 @@ body {
     font-family: Roboto, sans-serif;
     font-size: 1.7em;
     font-weight: 100;
-    text-transform: uppercase;
     text-align: center;
     padding: 1em;
 
