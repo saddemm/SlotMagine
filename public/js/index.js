@@ -24,16 +24,16 @@ $(document).ready(function() {
 
                 $('#qr-code').qrcode(shortenerUrl);
 
-                $('#qr-link-2').html("<a> </a>");
-                //$('#qr-link-2').html("<a>"+shortenerUrl+"</a>");
+                //$('#qr-link-2').html("<a> </a>");
+                $('#qr-link-2').html("<a>"+shortenerUrl+"</a>");
 
             }
         });
 
     }else{
         $('#qr-code').qrcode(link2);
-        //$('#qr-link-2').html("<a>"+link2+"</a>");
-        $('#qr-link-2').html("<a>https://goo.gl/h4C5H1 </a>");
+        $('#qr-link-2').html("<a>"+link2+"</a>");
+        //$('#qr-link-2').html("<a>https://goo.gl/h4C5H1 </a>");
     }
 
 });
