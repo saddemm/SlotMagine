@@ -82,7 +82,7 @@ $(document).ready(function(){
 
             if (countdown < 2){
                 clearInterval(intId);
-                if ($('.form-page').is(":visible")) {
+                if ($('.flex_div').is(":visible")) {
 
                     window.location.reload();
                 }
@@ -227,7 +227,7 @@ $(document).ready(function(){
         $mainPage = $("section.main-page");
         $gamePage = $("section.game-page");
 
-        $gameFill = $("section.form-page");
+        $gameFill = $("section.flex_div");
 
         $mainPage.addClass("hide");
         $gameFill.removeClass("hide");
@@ -242,7 +242,7 @@ $(document).ready(function(){
 
         $mainPage = $("section.main-page");
         $gamePage = $("section.game-page");
-        $gameFill = $("section.form-page");
+        $gameFill = $("section.flex_div");
 
 
         $mainPage.addClass("hide");

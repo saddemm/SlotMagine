@@ -80,6 +80,7 @@ a {
   display: table;
   position: relative;
   width: 100%;
+  min-height: 100vh;
 }
 
 /***/
@@ -108,35 +109,47 @@ a {
 
 
 .pietimer {
-  position: relative;
+  position: absolute;
   float: right;
-  height: 40px;
-  width: 40px;
-  margin: 50px 40px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  right: 0;
   text-align: center;
-  transform: scale(1.5);
+  transform: scale(2.5);
 }
 
 .pietimer .pietimer-number {
   color: white;
-  display: inline-block;
-  line-height: 40px;
+  position: relative;
+  width: 100%;
+  font-size: 0.9rem;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .pietimer svg {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
+  position: relative;
+  top: 0rem;
+  right: 3.5rem;
+  width: 6rem;
+  height: 5rem;
   transform: rotateY(-180deg) rotateZ(-90deg);
+  padding: 1rem;
 }
 
 .pietimer svg circle {
-  stroke-dasharray: 113px;
-  stroke-dashoffset: 0px;
-  stroke-linecap: round;
-  stroke-width: 2px;
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  stroke-width: 4px;
   stroke: white;
   fill: none;
   animation: countdown 60s linear infinite forwards; /* timer */
@@ -295,6 +308,7 @@ a {
   text-transform: uppercase;
   font-size: 4rem;
   letter-spacing: -1px;
+  margin-bottom: 30px;
   text-align: center;
   color: #fff;
   text-shadow: 0px 3px 8px #2a2a2a;
@@ -387,14 +401,14 @@ a {
 }
 
 .winner-page .medium-text {
-  margin-top : 5vh;
-  font-size: 2em;
+  margin-top : 3vh;
+  font-size: 3rem;
 }
 
 .winner-page .stage {
-  font: 6em 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
+  font: 8rem 'Pacifico', 'Kaushan Script', Futura, 'Roboto', 'Trebuchet MS', Helvetica, sans-serif;
   text-shadow: 4px 5px #333;
-  margin : 1em auto;
+  margin : 0.5rem auto;
 }
 
 
@@ -494,6 +508,7 @@ a {
   .main-container .b-left .mb-5 {
     text-align: center;
     font-size: 3.5em;
+    text-transform: uppercase;
   }
 
   .main-container .b-left span {
@@ -540,6 +555,33 @@ a {
   }
 }
 @media screen and (max-width: 1081px) {
+  .main-container .b-left {padding: 2rem ;}
+  .pietimer svg {
+    position: relative;
+    top: 0rem;
+    right: 3.4rem;
+  }
+  html, body {
+    overflow: hidden;
+  }
+  .pietimer .pietimer-number {font-size: 0.8rem}
+  .flex_div {
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    height: 100vh;
+  }
+  .flex_div .pietimer {
+    position: absolute  !important;
+    top: 5rem;
+    transform: scale(4);
+    right: 0;
+  }
+  .flex_div .main-container {height: auto !important;}
+  .main-container {margin-top: 0px;}
   .b-right .b-mobile {
     width: 50vw;
   }
@@ -547,11 +589,11 @@ a {
   .content_block_mobile {
     left: 6vw;
   }
-
+  .flex_div  .inner {margin: 0 auto !important;}
   .masthead .inner {
     float: none;
     margin: 50px auto 0;
-    min-width: 30vw;
+    min-width: 60vw;
   }
 
   .btn_accrelec {
@@ -561,7 +603,7 @@ a {
   }
 
   .vien_mobile {
-    min-height: 45vh;
+    min-height: 40vh;
   }
 
   .vien_mobile.b-mobile {
@@ -590,7 +632,7 @@ a {
 
   .vien_mobile #qr-link-2 {
     font-size: 4rem;
-    margin-top: 5vh;
+    margin-top: 20px;
   }
 
   .moving_text_hide {
