@@ -1,11 +1,28 @@
 {% extends 'layout.twig' %}
 {% block styles %}
 
+  <style>
+
+    video#bgvid {
+      position: fixed; right: 0; bottom: 0;
+      min-width: 100%; min-height: 100%;
+      width: auto; height: auto; z-index: -100;
+      background-size: cover;
+    }
+
+  </style>
 
 {% endblock %}
 {% block body %}
 
   <!-- Navigation -->
+  <div class="overlay">
+
+  <video allowfullscreen autoplay loop id="bgvid">
+    <source src="/images/paysage.mp4" type="video/mp4">
+  </video>
+
+  </div>
 
   <div class="site-wrapper">
     <div class="site-wrapper-inner">
@@ -179,6 +196,27 @@
 
   <script type="text/javascript" src="/node_modules/jquery.qrcode/jquery.qrcode.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+
+  <script type="text/javascript">
+
+
+    $(document).ready(function() {
+
+      $('.overlay').on('click', function(ev) {
+        $('.overlay').hide();
+        var fullScreenFresh = setTimeout(function() {
+          if ($('.main-page').is(":visible")) {
+            $('.overlay').show();
+          }
+        },35000);
+      });
+
+    });
+
+
+
+
+  </script>
 
 
 
