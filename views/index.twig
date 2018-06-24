@@ -19,7 +19,8 @@
   <div class="overlay">
 
   <video allowfullscreen autoplay loop id="bgvid">
-    <source src="/images/paysage.mp4" type="video/mp4">
+
+
   </video>
 
   </div>
@@ -215,6 +216,17 @@
 
 
 
+
+    console.log(window.screen.availWidth+' X ');
+    console.log(window.screen.availHeight);
+
+    if (window.screen.availWidth == 1080 && window.screen.availHeight == 1920){
+      $('#bgvid').html("<source src='/images/portrait.mp4' type='video/mp4'>");
+
+    }else{
+      $('#bgvid').html("<source src='/images/paysage.mp4' type='video/mp4'>");
+
+    }
 
   </script>
 
